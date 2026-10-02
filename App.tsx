@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, SPACING, FONT_SIZES } from "./theme";
 import Card from "./components/Card";
@@ -8,27 +8,35 @@ import ScreenTitle from "./components/ScreenTitle";
 export default function App() {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.rootContainer}>
-        <ScreenTitle>BackpackBackpack</ScreenTitle>
-        <Card>
-          <Text style={styles.bodyText}>
-            Welcome to BackpackBackpack, the app for a rules-lite dungeoncrawl
-            on the go!
-          </Text>
-        </Card>
-        <View style={styles.buttonsContainer}>
-          <PrimaryButton title="Host Game" />
-          <PrimaryButton title="Join Game" />
-        </View>
-      </SafeAreaView>
+      <ImageBackground
+        source={require("./assets/images/pexels-jorge-acre-239933086-17061995.jpg")}
+        resizeMode="cover"
+        style={styles.background}
+      >
+        <SafeAreaView style={styles.rootContainer}>
+          <ScreenTitle>Welcome, Adventurer</ScreenTitle>
+          <Card>
+            <Text style={styles.bodyText}>
+              Welcome to BackpackBackpack! Manage your TTRPG inventory with ease
+              and journey forth. Just make sure you pack enough torches.
+            </Text>
+          </Card>
+          <View style={styles.buttonsContainer}>
+            <PrimaryButton title="Host Game" />
+            <PrimaryButton title="Join Game" />
+          </View>
+        </SafeAreaView>
+      </ImageBackground>
     </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+  },
   rootContainer: {
     flex: 1,
-    backgroundColor: COLORS.background,
     alignItems: "center",
     padding: SPACING.md,
     paddingTop: SPACING.lg,

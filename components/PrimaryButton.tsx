@@ -4,7 +4,7 @@ import {
   Pressable,
   GestureResponderEvent,
 } from "react-native";
-import { COLORS, SPACING, FONT_SIZES } from "../theme";
+import { COLORS, SPACING, FONT_SIZES, SHADOW } from "../theme";
 
 interface Props {
   title: string;
@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
     borderRadius: 8,
+    ...SHADOW,
   },
   pressed: {
     opacity: 0.7,
   },
   text: {
-    color: COLORS.text,
+    color: COLORS.background,
     fontSize: FONT_SIZES.body,
-    fontWeight: "bold",
     textAlign: "center",
   },
 });
