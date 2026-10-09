@@ -36,4 +36,4 @@ Renders a list of cards representing inventory items as well as a component show
 
 ### Adventure Screen
 
-Renders the active room with its associated description, items, and monsters. Items open the same modal as described under the **CharacterInventory** screen, allowing the host to share items with the players. Each room will also have links to adjacent rooms. The activeRoom will be persisted in the database.
+Renders the active area with its associated description, items, and monsters. Items open the same modal as described under the **CharacterInventory** screen, allowing the host to share items with the players. Each room will also have links to adjacent areas. The activeRoom will be persisted in the database.
