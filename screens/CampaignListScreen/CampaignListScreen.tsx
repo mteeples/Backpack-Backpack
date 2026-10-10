@@ -7,21 +7,26 @@ import NoCampaignsView from "./NoCampaignsView";
 import CampaignsView from "./CampaignsView";
 import { ImageBackground } from "react-native";
 import { StyleSheet } from "react-native";
+import { useState } from "react";
 
 interface Props {
   userId: string;
 }
 
-const CampaignListScreen = ({ userId }: Props) => {
-  const userCampaigns: Array<UserCampaignLinkExpanded> =
-    USER_CAMPAIGN_LINKS.filter((user) => user.userId === userId).map((user) => {
-      return {
-        ...user,
-        campaign: CAMPAIGNS.find((campaign) => campaign.id === user.campaignId),
-      };
-    });
-  const joinedCampaign = userCampaigns.length > 0;
+const STARTING_CAMPAIGNS: Array<UserCampaignLinkExpanded> =
+  USER_CAMPAIGN_LINKS.map((user) => {
+    return {
+      ...user,
+      campaign: CAMPAIGNS.find((campaign) => campaign.id === user.campaignId),
+    };
+  });
 
+const CampaignListScreen = ({ userId }: Props) => {
+  const [userCampaigns, setUserCampaigns] = useState(
+    STARTING_CAMPAIGNS.filter((user) => user.userId === userId),
+  );
+  const joinedCampaign = userCampaigns.length > 0;
+  console.log(userCampaigns);
   return (
     <ImageBackground
       source={require("../../assets/images/pexels-jorge-acre-239933086-17061995.jpg")}
@@ -29,7 +34,10 @@ const CampaignListScreen = ({ userId }: Props) => {
       style={styles.background}
     >
       {joinedCampaign ? (
-        <CampaignsView campaigns={userCampaigns} />
+        <CampaignsView
+          campaigns={userCampaigns}
+          setCampaigns={setUserCampaigns}
+        />
       ) : (
         <NoCampaignsView />
       )}
