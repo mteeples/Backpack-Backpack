@@ -5,6 +5,8 @@ import {
 import { CAMPAIGNS } from "../../data/Campaigns";
 import NoCampaignsView from "./NoCampaignsView";
 import CampaignsView from "./CampaignsView";
+import { ImageBackground } from "react-native";
+import { StyleSheet } from "react-native";
 
 interface Props {
   userId: number;
@@ -20,11 +22,25 @@ const CampaignListScreen = ({ userId }: Props) => {
     });
   const joinedCampaign = userCampaigns.length > 0;
 
-  return joinedCampaign ? (
-    <CampaignsView campaigns={userCampaigns} />
-  ) : (
-    <NoCampaignsView />
+  return (
+    <ImageBackground
+      source={require("../../assets/images/pexels-jorge-acre-239933086-17061995.jpg")}
+      resizeMode="cover"
+      style={styles.background}
+    >
+      {joinedCampaign ? (
+        <CampaignsView campaigns={userCampaigns} />
+      ) : (
+        <NoCampaignsView />
+      )}
+    </ImageBackground>
   );
 };
+
+const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+  },
+});
 
 export default CampaignListScreen;

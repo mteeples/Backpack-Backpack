@@ -35,7 +35,6 @@ const CampaignsView = ({ campaigns }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.background,
     flex: 1,
   },
   cardsContainer: {
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
     gap: SPACING.md,
     paddingTop: SPACING.lg,
     paddingBottom: SPACING.md,
-    paddingHorizontal: SPACING.md,
+    paddingHorizontal: SPACING.lg,
   },
 });
 
