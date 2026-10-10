@@ -21,7 +21,7 @@ const CampaignsView = ({ campaigns }: Props) => {
       <View style={styles.cardsContainer}>
         <FlatList
           data={campaigns}
-          keyExtractor={(campaign) => campaign.id.toString()}
+          keyExtractor={(campaign) => campaign.id}
           renderItem={({ item }) => (
             <Card>
               <Text>{item.campaign?.name}</Text>

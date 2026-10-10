@@ -1,23 +1,23 @@
 export interface Monster {
-  id: number;
+  id: string;
   name: string;
 }
 
 export const MONSTERS: Array<Monster> = [
   {
-    id: 0,
+    id: "0",
     name: "Bandit",
   },
   {
-    id: 1,
+    id: "1",
     name: "Goblin",
   },
   {
-    id: 1,
+    id: "1",
     name: "Giant Rat",
   },
   {
-    id: 2,
+    id: "2",
     name: "Gray Ooze",
   },
 ];

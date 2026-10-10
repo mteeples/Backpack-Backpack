@@ -1,37 +1,37 @@
 export interface Item {
-  id: number;
+  id: string;
   name: string;
   weight: number;
 }
 
 export const ITEMS: Array<Item> = [
   {
-    id: 0,
+    id: "0",
     name: "Gold Coin",
     weight: 1,
   },
   {
-    id: 1,
+    id: "1",
     name: "Sword",
     weight: 10,
   },
   {
-    id: 2,
+    id: "2",
     name: "Rope",
     weight: 10,
   },
   {
-    id: 3,
+    id: "3",
     name: "Torch",
     weight: 10,
   },
   {
-    id: 4,
+    id: "4",
     name: "Rations",
     weight: 10,
   },
   {
-    id: 5,
+    id: "5",
     name: "Magic Sword",
     weight: 10,
   },
