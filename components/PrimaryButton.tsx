@@ -3,20 +3,25 @@ import {
   StyleSheet,
   Pressable,
   GestureResponderEvent,
+  StyleProp,
+  ViewStyle,
 } from "react-native";
 import { COLORS, SPACING, FONT_SIZES, SHADOW } from "../theme";
 
 interface Props {
   title: string;
   onPress?: (event: GestureResponderEvent) => void;
+  style?: StyleProp<ViewStyle>;
 }
 
-const PrimaryButton = ({ title, onPress }: Props) => {
+const PrimaryButton = ({ title, onPress, style }: Props) => {
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) =>
-        pressed ? [styles.pressed, styles.button] : styles.button
+        pressed
+          ? [styles.pressed, styles.button, style]
+          : [styles.button, style]
       }
     >
       <Text style={styles.text}>{title}</Text>

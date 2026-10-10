@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Card from "../components/Card";
-import PrimaryButton from "../components/PrimaryButton";
-import ScreenTitle from "../components/ScreenTitle";
-import { COLORS, SPACING, FONT_SIZES } from "../theme";
+import Card from "../../components/Card";
+import PrimaryButton from "../../components/PrimaryButton";
+import ScreenTitle from "../../components/ScreenTitle";
+import { COLORS, SPACING, FONT_SIZES } from "../../theme";
 
-const WelcomeScreen = () => {
+const NoCampaignsView = () => {
   return (
     <ImageBackground
-      source={require("../assets/images/pexels-jorge-acre-239933086-17061995.jpg")}
+      source={require("../../assets/images/pexels-jorge-acre-239933086-17061995.jpg")}
       resizeMode="cover"
       style={styles.background}
     >
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default WelcomeScreen;
+export default NoCampaignsView;

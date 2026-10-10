@@ -1,10 +1,10 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import WelcomeScreen from "./screens/WelcomeScreen";
+import CampaignListScreen from "./screens/CampaignListScreen/CampaignListScreen";
 
 export default function App() {
   return (
     <SafeAreaProvider>
-      <WelcomeScreen />
+      <CampaignListScreen userId={1} />
     </SafeAreaProvider>
   );
 }

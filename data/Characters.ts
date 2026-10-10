@@ -6,7 +6,7 @@ export interface Character {
   strength: number;
   dexterity: number;
   willpower: number;
-  active: boolean;
+  isActive: boolean;
 }
 
 export const CHARACTERS: Array<Character> = [
@@ -18,7 +18,7 @@ export const CHARACTERS: Array<Character> = [
     willpower: 10,
     userId: 1,
     campaignId: 0,
-    active: true,
+    isActive: true,
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ export const CHARACTERS: Array<Character> = [
     willpower: 10,
     userId: 1,
     campaignId: 0,
-    active: false,
+    isActive: false,
   },
   {
     id: 3,
@@ -38,6 +38,6 @@ export const CHARACTERS: Array<Character> = [
     willpower: 10,
     userId: 2,
     campaignId: 0,
-    active: true,
+    isActive: true,
   },
 ];
