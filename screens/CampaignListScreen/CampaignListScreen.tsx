@@ -26,7 +26,7 @@ const CampaignListScreen = ({ userId }: Props) => {
     STARTING_CAMPAIGNS.filter((user) => user.userId === userId),
   );
   const joinedCampaign = userCampaigns.length > 0;
-  console.log(userCampaigns);
+
   return (
     <ImageBackground
       source={require("../../assets/images/pexels-jorge-acre-239933086-17061995.jpg")}

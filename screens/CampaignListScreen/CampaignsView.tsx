@@ -4,9 +4,10 @@ import PrimaryButton from "../../components/PrimaryButton";
 import ScreenTitle from "../../components/ScreenTitle";
 import Card from "../../components/Card";
 import { UserCampaignLinkExpanded } from "../../data/links/UserCampaignLinks";
-import { SPACING } from "../../theme";
+import { FONT_SIZES, SPACING } from "../../theme";
 import JoinCampaignModal from "../../components/JoinCampaignModal";
 import HostCampaignModal from "../../components/HostCampaignModal";
+import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
 import { useState } from "react";
 
 interface Props {
@@ -46,8 +47,16 @@ const CampaignsView = ({ campaigns }: Props) => {
           data={campaigns}
           keyExtractor={(campaign) => campaign.id}
           renderItem={({ item }) => (
-            <Card>
-              <Text>{item.campaign?.name}</Text>
+            <Card style={styles.card}>
+              <View style={styles.cardIcon}>
+                <MaterialDesignIcons
+                  name={item.isHost ? "crown" : "account"}
+                  size={FONT_SIZES.title}
+                />
+              </View>
+              <View style={styles.container}>
+                <Text style={styles.cardText}>{item.campaign?.name}</Text>
+              </View>
             </Card>
           )}
         />
@@ -63,6 +72,16 @@ const styles = StyleSheet.create({
   cardsContainer: {
     flex: 1,
     paddingHorizontal: SPACING.md,
+  },
+  cardIcon: {
+    padding: SPACING.sm,
+  },
+  card: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  cardText: {
+    fontSize: FONT_SIZES.body,
   },
   button: {
     flex: 1,
