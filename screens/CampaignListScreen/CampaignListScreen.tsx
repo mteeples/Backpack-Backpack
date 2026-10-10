@@ -9,7 +9,7 @@ import { ImageBackground } from "react-native";
 import { StyleSheet } from "react-native";
 
 interface Props {
-  userId: number;
+  userId: string;
 }
 
 const CampaignListScreen = ({ userId }: Props) => {
