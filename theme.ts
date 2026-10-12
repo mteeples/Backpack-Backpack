@@ -1,10 +1,4 @@
 export const COLORS = {
-  // Leave old colors for now and remove as I replace
-  primary: "#143109",
-  background: "#f7f7f7",
-  text: "#143109",
-  muted: "#efefef",
-
   // https://www.color-hex.com/color-palette/1024081
   notebookWhite: "#fefeff",
   notebookRed: "#f56465",
@@ -23,6 +17,9 @@ export const COLORS = {
   highlighterYellow: "#fff979",
   highlighterBlue: "#a1fcff",
   highlighterPink: "#ffa4ce",
+
+  // For modals
+  modalBackground: "rgba(15, 36, 57, 0.5)",
 };
 
 export const SPACING = {

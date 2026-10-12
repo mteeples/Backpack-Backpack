@@ -2,8 +2,8 @@ import { View, StyleSheet, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
-import Card from "../components/Card";
-import { FONT_SIZES, SPACING } from "../theme";
+import StickyNote from "../components/StickyNote";
+import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
@@ -57,22 +57,22 @@ const CampaignListScreen = ({ userId }: Props) => {
           onPress={() => setJoinModalOpen(true)}
         />
       </View>
-      <View style={styles.cardsContainer}>
+      <View style={styles.notesContainer}>
         <FlatList
           data={userCampaigns}
           keyExtractor={(campaign) => campaign.id}
           renderItem={({ item }) => (
-            <Card style={styles.card}>
-              <View style={styles.cardIcon}>
+            <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
+              <View style={styles.noteIcon}>
                 <MaterialDesignIcons
                   name={item.isHost ? "crown" : "account"}
                   size={FONT_SIZES.title}
                 />
               </View>
               <View style={styles.container}>
-                <Text style={styles.cardText}>{item.campaign?.name}</Text>
+                <Text style={styles.noteText}>{item.campaign?.name}</Text>
               </View>
-            </Card>
+            </StickyNote>
           )}
         />
       </View>
@@ -83,20 +83,22 @@ const CampaignListScreen = ({ userId }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // backgroundColor: COLORS.notebookWhite,
   },
-  cardsContainer: {
+  notesContainer: {
     flex: 1,
     paddingHorizontal: SPACING.md,
   },
-  cardIcon: {
+  noteIcon: {
     padding: SPACING.sm,
   },
-  card: {
+  note: {
     flexDirection: "row",
     alignItems: "center",
   },
-  cardText: {
+  noteText: {
     fontSize: FONT_SIZES.body,
+    backgroundColor: COLORS.stickyBeige,
   },
   button: {
     flex: 1,

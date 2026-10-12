@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import PrimaryButton from "./PrimaryButton";
-import { SPACING } from "../theme";
+import { COLORS, SPACING } from "../theme";
 import StickyModal from "./StickyModal";
 import StickyInput from "./StickyInput";
 import ScreenTitle from "./ScreenTitle";
@@ -16,15 +16,19 @@ const HostCampaignModal = ({ visible, setVisible }: Props) => {
   }
 
   return (
-    <StickyModal visible={visible}>
+    <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
       <ScreenTitle>Join Campaign</ScreenTitle>
       <View style={styles.textContainer}>
         <Text>Join an existing campaign</Text>
       </View>
       <StickyInput placeholder="Join Code" />
       <View style={styles.buttonsContainer}>
-        <PrimaryButton title="Join" />
-        <PrimaryButton title="Cancel" onPress={handleCancel} />
+        <PrimaryButton title="Join" noteColor={COLORS.stickyYellow} />
+        <PrimaryButton
+          title="Cancel"
+          onPress={handleCancel}
+          noteColor={COLORS.stickyYellow}
+        />
       </View>
     </StickyModal>
   );
