@@ -8,7 +8,8 @@ import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-import { Campaign } from "../models/Models";
+import { CampaignOverview } from "../models/Models";
+import { getCampaignOverviews } from "../repositories/StaticDataRepo";
 
 interface Props {
   userId: string;
@@ -18,7 +19,7 @@ const CampaignListScreen = ({ userId }: Props) => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
-  const startingCampaigns: Array<Campaign> = [];
+  const startingCampaigns = getCampaignOverviews(userId);
   const [userCampaigns, setUserCampaigns] = useState(startingCampaigns);
 
   return (
