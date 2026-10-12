@@ -20,9 +20,12 @@ const SignInScreen = () => {
           secureTextEntry={true}
         />
         <View style={styles.buttonsContainer}>
-          <PrimaryButton title="Sign In" />
+          <PrimaryButton title="Sign In" noteColor={COLORS.stickyYellow} />
           <Text style={styles.orText}>or</Text>
-          <PrimaryButton title="Create Account" />
+          <PrimaryButton
+            title="Create Account"
+            noteColor={COLORS.stickyYellow}
+          />
         </View>
       </StickyNote>
     </SafeAreaView>
