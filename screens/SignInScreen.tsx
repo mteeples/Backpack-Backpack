@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS, SPACING, FONT_SIZES } from "../theme";
 import Card from "../components/Card";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
-import { COLORS, SPACING, FONT_SIZES } from "../theme";
+import StickyInput from "../components/StickyInput";
 
 const SignInScreen = () => {
   return (
@@ -11,10 +12,9 @@ const SignInScreen = () => {
       <Card style={styles.card}>
         <ScreenTitle>Sign In</ScreenTitle>
 
-        <TextInput placeholder="Campaign Title" style={styles.textInput} />
-        <TextInput
+        <StickyInput placeholder="Campaign Title" />
+        <StickyInput
           placeholder="Password"
-          style={styles.textInput}
           textContentType="password"
           autoCorrect={false}
           secureTextEntry={true}
@@ -42,14 +42,6 @@ const styles = StyleSheet.create({
   },
   buttonsContainer: {
     gap: SPACING.sm,
-  },
-  textInput: {
-    padding: SPACING.sm,
-    borderColor: COLORS.primary,
-    borderRadius: 8,
-    borderWidth: 1,
-    marginBottom: SPACING.lg,
-    fontSize: SPACING.md,
   },
   card: {
     marginVertical: SPACING.lg,
