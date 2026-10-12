@@ -27,6 +27,8 @@ const CampaignListScreen = ({ userId }: Props) => {
       <JoinCampaignModal
         visible={joinModalOpen}
         setVisible={setJoinModalOpen}
+        userCampaigns={userCampaigns}
+        setUserCampaigns={setUserCampaigns}
       />
       <HostCampaignModal
         visible={hostModalOpen}
