@@ -1,9 +1,9 @@
-export interface Monster {
+export interface DbMonster {
   id: string;
   name: string;
 }
 
-export const MONSTERS: Array<Monster> = [
+export const MONSTERS: Array<DbMonster> = [
   {
     id: "0",
     name: "Bandit",

@@ -1,10 +1,10 @@
-export interface Item {
+export interface DbItem {
   id: string;
   name: string;
   weight: number;
 }
 
-export const ITEMS: Array<Item> = [
+export const ITEMS: Array<DbItem> = [
   {
     id: "0",
     name: "Gold Coin",

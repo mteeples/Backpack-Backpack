@@ -1,11 +1,11 @@
-export interface Area {
+export interface DbArea {
   id: string;
   adventureId: string;
   name: string;
   description: string;
 }
 
-export const AREAS: Array<Area> = [
+export const AREAS: Array<DbArea> = [
   {
     id: "1",
     adventureId: "0",

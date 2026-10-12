@@ -1,10 +1,10 @@
-export interface CampaignAdventureLink {
+export interface DbCampaignAdventureLink {
   id: string;
   campaignId: string;
   adventureId: string;
 }
 
-export const CAMPAIGN_ADVENTURE_LINKS: Array<CampaignAdventureLink> = [
+export const CAMPAIGN_ADVENTURE_LINKS: Array<DbCampaignAdventureLink> = [
   {
     id: "0",
     campaignId: "0",

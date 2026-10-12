@@ -1,10 +1,10 @@
-export interface CharacterItemLink {
+export interface DbCharacterItemLink {
   id: string;
   characterId: string;
   itemId: string;
 }
 
-export const CHARACTER_ITEM_LINKS: Array<CharacterItemLink> = [
+export const CHARACTER_ITEM_LINKS: Array<DbCharacterItemLink> = [
   {
     id: "0",
     characterId: "0",

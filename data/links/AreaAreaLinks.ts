@@ -1,11 +1,11 @@
-export interface AreaAreaLink {
+export interface DbAreaAreaLink {
   id: string;
   sourceAreaId: string;
   destinationAreaId: string;
   description: string;
 }
 
-export const AREA_AREA_LINKS: Array<AreaAreaLink> = [
+export const AREA_AREA_LINKS: Array<DbAreaAreaLink> = [
   {
     id: "0",
     sourceAreaId: "1",

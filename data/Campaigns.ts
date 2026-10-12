@@ -1,10 +1,10 @@
-export interface Campaign {
+export interface DbCampaign {
   id: string;
   name: string;
   description: string;
 }
 
-export const CAMPAIGNS: Array<Campaign> = [
+export const CAMPAIGNS: Array<DbCampaign> = [
   {
     id: "1",
     name: "Campaign 1",

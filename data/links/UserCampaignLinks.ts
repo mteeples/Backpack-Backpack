@@ -1,19 +1,11 @@
-import { Campaign } from "../Campaigns";
-import { User } from "../Users";
-
-export interface UserCampaignLink {
+export interface DbUserCampaignLink {
   id: string;
   userId: string;
   campaignId: string;
   isHost: boolean;
 }
 
-export interface UserCampaignLinkExpanded extends UserCampaignLink {
-  campaign?: Campaign;
-  user?: User;
-}
-
-export const USER_CAMPAIGN_LINKS: Array<UserCampaignLink> = [
+export const USER_CAMPAIGN_LINKS: Array<DbUserCampaignLink> = [
   {
     id: "0",
     userId: "0",

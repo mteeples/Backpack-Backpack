@@ -1,4 +1,4 @@
-export interface Character {
+export interface DbCharacter {
   id: string;
   userId: string;
   campaignId: string;
@@ -9,7 +9,7 @@ export interface Character {
   isActive: boolean;
 }
 
-export const CHARACTERS: Array<Character> = [
+export const CHARACTERS: Array<DbCharacter> = [
   {
     id: "1",
     name: "Jeff",

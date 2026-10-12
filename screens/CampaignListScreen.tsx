@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrimaryButton from "../components/PrimaryButton";
@@ -7,32 +8,18 @@ import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-import { useState } from "react";
-import {
-  USER_CAMPAIGN_LINKS,
-  UserCampaignLinkExpanded,
-} from "../data/links/UserCampaignLinks";
-import { CAMPAIGNS } from "../data/Campaigns";
+import { Campaign } from "../models/Models";
 
 interface Props {
   userId: string;
 }
 
-const STARTING_CAMPAIGNS: Array<UserCampaignLinkExpanded> =
-  USER_CAMPAIGN_LINKS.map((user) => {
-    return {
-      ...user,
-      campaign: CAMPAIGNS.find((campaign) => campaign.id === user.campaignId),
-    };
-  });
-
 const CampaignListScreen = ({ userId }: Props) => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
-  const [userCampaigns, setUserCampaigns] = useState(
-    STARTING_CAMPAIGNS.filter((user) => user.userId === userId),
-  );
+  const startingCampaigns: Array<Campaign> = [];
+  const [userCampaigns, setUserCampaigns] = useState(startingCampaigns);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -65,12 +52,12 @@ const CampaignListScreen = ({ userId }: Props) => {
             <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
               <View style={styles.noteIcon}>
                 <MaterialDesignIcons
-                  name={item.isHost ? "crown" : "account"}
+                  name={item.userIsHost ? "crown" : "account"}
                   size={FONT_SIZES.title}
                 />
               </View>
               <View style={styles.container}>
-                <Text style={styles.noteText}>{item.campaign?.name}</Text>
+                <Text style={styles.noteText}>{item.name}</Text>
               </View>
             </StickyNote>
           )}

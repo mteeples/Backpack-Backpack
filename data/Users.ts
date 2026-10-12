@@ -1,9 +1,9 @@
-export interface User {
+export interface DbUser {
   id: string;
   username: string;
 }
 
-export const USERS: Array<User> = [
+export const USERS: Array<DbUser> = [
   {
     id: "0",
     username: "User0",
