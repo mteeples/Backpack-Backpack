@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { Modal, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { SPACING } from "../theme";
-import Card from "./Card";
+import { COLORS, SPACING } from "../theme";
+import StickyNote from "./StickyNote";
 
 interface Props {
   visible: boolean;
@@ -13,7 +13,7 @@ const StickyModal = ({ visible, children }: Props) => {
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
       <SafeAreaView style={styles.container}>
-        <Card style={styles.card}>{children}</Card>
+        <StickyNote style={styles.note}>{children}</StickyNote>
       </SafeAreaView>
     </Modal>
   );
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: SPACING.lg,
     justifyContent: "flex-start",
-    backgroundColor: "rgba(15, 36, 57, 0.8)",
+    backgroundColor: COLORS.modalBackground,
   },
-  card: {
+  note: {
     marginTop: SPACING.lg,
   },
 });

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, SPACING, FONT_SIZES } from "../theme";
-import Card from "../components/Card";
+import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
 import StickyInput from "../components/StickyInput";
@@ -9,7 +9,7 @@ import StickyInput from "../components/StickyInput";
 const SignInScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <Card style={styles.card}>
+      <StickyNote style={styles.note}>
         <ScreenTitle>Sign In</ScreenTitle>
 
         <StickyInput placeholder="Campaign Title" />
@@ -24,7 +24,7 @@ const SignInScreen = () => {
           <Text style={styles.orText}>or</Text>
           <PrimaryButton title="Create Account" />
         </View>
-      </Card>
+      </StickyNote>
     </SafeAreaView>
   );
 };
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     gap: SPACING.sm,
   },
-  card: {
+  note: {
     marginVertical: SPACING.lg,
   },
   orText: {

@@ -8,11 +8,11 @@ interface Props {
 }
 
 const Card = ({ children, style }: Props) => {
-  return <View style={[styles.card, style]}>{children}</View>;
+  return <View style={[styles.note, style]}>{children}</View>;
 };
 
 const styles = StyleSheet.create({
-  card: {
+  note: {
     backgroundColor: COLORS.muted,
     borderRadius: 12,
     padding: SPACING.md,

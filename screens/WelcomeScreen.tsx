@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Card from "../components/Card";
+import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
 import { COLORS, SPACING, FONT_SIZES } from "../theme";
@@ -9,12 +9,12 @@ const WelcomeScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScreenTitle>Welcome, Adventurer</ScreenTitle>
-      <Card style={styles.card}>
+      <StickyNote style={styles.note}>
         <Text style={styles.bodyText}>
           Welcome to BackpackBackpack! Manage your TTRPG inventory with ease and
           journey forth. Just make sure you pack enough torches.
         </Text>
-      </Card>
+      </StickyNote>
       <View style={styles.buttonsContainer}>
         <PrimaryButton title="Login" />
         <PrimaryButton title="Sign Up" />
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: SPACING.md,
   },
-  card: {
+  note: {
     marginVertical: SPACING.lg,
   },
 });

@@ -23,6 +23,9 @@ export const COLORS = {
   highlighterYellow: "#fff979",
   highlighterBlue: "#a1fcff",
   highlighterPink: "#ffa4ce",
+
+  // For modals
+  modalBackground: "rgba(15, 36, 57, 0.5)",
 };
 
 export const SPACING = {
