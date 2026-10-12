@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SPACING } from "./theme";
 import CampaignListScreen from "./screens/CampaignListScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import SignInScreen from "./screens/SignInScreen";
 import PrimaryButton from "./components/PrimaryButton";
-import { SPACING } from "./theme";
 
 export default function App() {
   const pages = [
@@ -28,9 +28,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
   navButtons: {
     flexDirection: "row",
     justifyContent: "space-evenly",

@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
 import Card from "../components/Card";
-import { FONT_SIZES, SPACING } from "../theme";
+import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
@@ -83,6 +83,7 @@ const CampaignListScreen = ({ userId }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.notebookWhite,
   },
   cardsContainer: {
     flex: 1,

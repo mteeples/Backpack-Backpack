@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: SPACING.md,
     paddingTop: SPACING.lg,
+    backgroundColor: COLORS.notebookWhite,
   },
   bodyText: {
     color: COLORS.text,

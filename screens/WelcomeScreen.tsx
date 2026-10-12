@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: SPACING.md,
     paddingTop: SPACING.lg,
+    backgroundColor: COLORS.notebookWhite,
   },
   bodyText: {
     color: COLORS.text,
