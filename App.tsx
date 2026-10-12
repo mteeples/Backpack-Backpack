@@ -17,21 +17,12 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <ImageBackground
-        source={require("./assets/images/pexels-jorge-acre-239933086-17061995.jpg")}
-        resizeMode="cover"
-        style={styles.background}
-      >
-        {pages[pageIndex]}
-        <View style={styles.navButtons}>
-          <PrimaryButton title="Welcome" onPress={() => setPageIndex(0)} />
-          <PrimaryButton title="Sign In" onPress={() => setPageIndex(1)} />
-          <PrimaryButton
-            title="Campaign List"
-            onPress={() => setPageIndex(2)}
-          />
-        </View>
-      </ImageBackground>
+      {pages[pageIndex]}
+      <View style={styles.navButtons}>
+        <PrimaryButton title="Welcome" onPress={() => setPageIndex(0)} />
+        <PrimaryButton title="Sign In" onPress={() => setPageIndex(1)} />
+        <PrimaryButton title="Campaign List" onPress={() => setPageIndex(2)} />
+      </View>
     </SafeAreaProvider>
   );
 }
