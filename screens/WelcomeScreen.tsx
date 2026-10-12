@@ -9,7 +9,7 @@ const WelcomeScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScreenTitle>Welcome, Adventurer</ScreenTitle>
-      <StickyNote style={styles.note}>
+      <StickyNote style={styles.note} noteColor={COLORS.stickyYellow}>
         <Text style={styles.bodyText}>
           Welcome to BackpackBackpack! Manage your TTRPG inventory with ease and
           journey forth. Just make sure you pack enough torches.

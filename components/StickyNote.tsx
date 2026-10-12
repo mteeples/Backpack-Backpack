@@ -1,19 +1,20 @@
-import { ReactNode } from "react";
-import { View, StyleSheet, StyleProp, ViewStyle } from "react-native";
+import { View, StyleSheet, ViewProps } from "react-native";
 import { COLORS, SPACING, SHADOW } from "../theme";
 
-interface Props {
-  children?: ReactNode;
-  style?: StyleProp<ViewStyle>;
+interface Props extends ViewProps {
+  noteColor: string;
 }
 
-const Card = ({ children, style }: Props) => {
-  return <View style={[styles.note, style]}>{children}</View>;
+const StickyNote = ({ children, style, noteColor }: Props) => {
+  return (
+    <View style={[styles.note, style, { backgroundColor: noteColor }]}>
+      {children}
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
   note: {
-    backgroundColor: COLORS.muted,
     borderRadius: 12,
     padding: SPACING.md,
     marginVertical: SPACING.sm,
@@ -21,4 +22,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Card;
+export default StickyNote;

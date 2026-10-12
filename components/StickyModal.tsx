@@ -7,13 +7,16 @@ import StickyNote from "./StickyNote";
 interface Props {
   visible: boolean;
   children?: ReactNode;
+  noteColor: string;
 }
 
-const StickyModal = ({ visible, children }: Props) => {
+const StickyModal = ({ visible, children, noteColor }: Props) => {
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
       <SafeAreaView style={styles.container}>
-        <StickyNote style={styles.note}>{children}</StickyNote>
+        <StickyNote style={styles.note} noteColor={noteColor}>
+          {children}
+        </StickyNote>
       </SafeAreaView>
     </Modal>
   );

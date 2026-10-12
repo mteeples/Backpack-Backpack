@@ -9,7 +9,7 @@ import StickyInput from "../components/StickyInput";
 const SignInScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <StickyNote style={styles.note}>
+      <StickyNote style={styles.note} noteColor={COLORS.stickyYellow}>
         <ScreenTitle>Sign In</ScreenTitle>
 
         <StickyInput placeholder="Campaign Title" />

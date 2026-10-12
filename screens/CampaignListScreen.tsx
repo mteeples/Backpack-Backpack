@@ -62,7 +62,7 @@ const CampaignListScreen = ({ userId }: Props) => {
           data={userCampaigns}
           keyExtractor={(campaign) => campaign.id}
           renderItem={({ item }) => (
-            <StickyNote style={styles.note}>
+            <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
               <View style={styles.noteIcon}>
                 <MaterialDesignIcons
                   name={item.isHost ? "crown" : "account"}
