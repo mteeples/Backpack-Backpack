@@ -8,17 +8,19 @@ import { COLORS, SPACING, FONT_SIZES } from "../theme";
 const WelcomeScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <ScreenTitle>Welcome, Adventurer</ScreenTitle>
       <StickyNote style={styles.note} noteColor={COLORS.stickyYellow}>
-        <Text style={styles.bodyText}>
-          Welcome to BackpackBackpack! Manage your TTRPG inventory with ease and
-          journey forth. Just make sure you pack enough torches.
-        </Text>
+        <ScreenTitle>Welcome, Adventurer</ScreenTitle>
+        <View style={styles.bodyContainer}>
+          <Text style={styles.bodyText}>
+            Welcome to BackpackBackpack! Manage your TTRPG inventory with ease
+            and journey forth. Just make sure you pack enough torches.
+          </Text>
+        </View>
+        <View style={styles.buttonsContainer}>
+          <PrimaryButton title="Login" noteColor={COLORS.stickyYellow} />
+          <PrimaryButton title="Sign Up" noteColor={COLORS.stickyYellow} />
+        </View>
       </StickyNote>
-      <View style={styles.buttonsContainer}>
-        <PrimaryButton title="Login" />
-        <PrimaryButton title="Sign Up" />
-      </View>
     </SafeAreaView>
   );
 };
@@ -31,14 +33,19 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.lg,
     backgroundColor: COLORS.notebookWhite,
   },
+  bodyContainer: {
+    marginTop: SPACING.sm,
+    marginBottom: SPACING.lg,
+  },
   bodyText: {
-    color: COLORS.text,
+    color: COLORS.ballpointBlack,
     fontSize: FONT_SIZES.body,
     textAlign: "center",
   },
   buttonsContainer: {
     flexDirection: "row",
-    gap: SPACING.md,
+    justifyContent: "center",
+    gap: SPACING.sm,
   },
   note: {
     marginVertical: SPACING.lg,

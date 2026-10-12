@@ -8,7 +8,7 @@ const StickyInput = ({ ...props }: TextInputProps) => {
 const styles = StyleSheet.create({
   textInput: {
     padding: SPACING.sm,
-    borderColor: COLORS.primary,
+    borderColor: COLORS.ballpointBlack,
     borderRadius: 8,
     borderWidth: 1,
     marginBottom: SPACING.lg,

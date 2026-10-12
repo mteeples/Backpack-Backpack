@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
   },
   noteText: {
     fontSize: FONT_SIZES.body,
+    backgroundColor: COLORS.stickyBeige,
   },
   button: {
     flex: 1,

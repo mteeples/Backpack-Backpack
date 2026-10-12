@@ -39,11 +39,6 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.lg,
     backgroundColor: COLORS.notebookWhite,
   },
-  bodyText: {
-    color: COLORS.text,
-    fontSize: FONT_SIZES.body,
-    textAlign: "center",
-  },
   buttonsContainer: {
     gap: SPACING.sm,
   },
