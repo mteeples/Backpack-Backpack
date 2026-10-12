@@ -1,7 +1,8 @@
-import { StyleSheet, View, TextInput, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import PrimaryButton from "./PrimaryButton";
-import { COLORS, SPACING } from "../theme";
+import { SPACING } from "../theme";
 import StickyModal from "./StickyModal";
+import StickyInput from "./StickyInput";
 import ScreenTitle from "./ScreenTitle";
 
 interface Props {
@@ -20,12 +21,8 @@ const HostCampaignModal = ({ visible, setVisible }: Props) => {
       <View style={styles.textContainer}>
         <Text>Host a new campaign</Text>
       </View>
-      <TextInput placeholder="Campaign Title" style={styles.textInput} />
-      <TextInput
-        placeholder="Campaign Description"
-        multiline={true}
-        style={styles.textInput}
-      />
+      <StickyInput placeholder="Campaign Title" />
+      <StickyInput placeholder="Campaign Description" multiline={true} />
       <View style={styles.buttonsContainer}>
         <PrimaryButton title="Create" />
         <PrimaryButton title="Cancel" onPress={handleCancel} />
@@ -38,14 +35,6 @@ const styles = StyleSheet.create({
   textContainer: {
     marginBottom: SPACING.md,
     alignItems: "center",
-  },
-  textInput: {
-    padding: SPACING.sm,
-    borderColor: COLORS.primary,
-    borderRadius: 8,
-    borderWidth: 1,
-    marginBottom: SPACING.lg,
-    fontSize: SPACING.md,
   },
   buttonsContainer: {
     gap: SPACING.sm,
