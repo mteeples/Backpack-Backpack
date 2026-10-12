@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ImageBackground } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { SPACING } from "./theme";
 import CampaignListScreen from "./screens/CampaignListScreen";
@@ -17,12 +17,21 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      {pages[pageIndex]}
-      <View style={styles.navButtons}>
-        <PrimaryButton title="Welcome" onPress={() => setPageIndex(0)} />
-        <PrimaryButton title="Sign In" onPress={() => setPageIndex(1)} />
-        <PrimaryButton title="Campaign List" onPress={() => setPageIndex(2)} />
-      </View>
+      <ImageBackground
+        style={{ flex: 1 }}
+        source={require("./assets/images/pexels-planka-27608025.jpg")}
+        resizeMode="cover"
+      >
+        {pages[pageIndex]}
+        <View style={styles.navButtons}>
+          <PrimaryButton title="Welcome" onPress={() => setPageIndex(0)} />
+          <PrimaryButton title="Sign In" onPress={() => setPageIndex(1)} />
+          <PrimaryButton
+            title="Campaign List"
+            onPress={() => setPageIndex(2)}
+          />
+        </View>
+      </ImageBackground>
     </SafeAreaProvider>
   );
 }

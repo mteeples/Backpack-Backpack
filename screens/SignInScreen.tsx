@@ -9,7 +9,7 @@ import StickyInput from "../components/StickyInput";
 const SignInScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <StickyNote style={styles.note} noteColor={COLORS.stickyYellow}>
+      <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
         <ScreenTitle>Sign In</ScreenTitle>
 
         <StickyInput placeholder="Campaign Title" />
@@ -20,11 +20,11 @@ const SignInScreen = () => {
           secureTextEntry={true}
         />
         <View style={styles.buttonsContainer}>
-          <PrimaryButton title="Sign In" noteColor={COLORS.stickyYellow} />
+          <PrimaryButton title="Sign In" noteColor={COLORS.stickyBeige} />
           <Text style={styles.orText}>or</Text>
           <PrimaryButton
             title="Create Account"
-            noteColor={COLORS.stickyYellow}
+            noteColor={COLORS.stickyBeige}
           />
         </View>
       </StickyNote>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: SPACING.md,
     paddingTop: SPACING.lg,
-    backgroundColor: COLORS.notebookWhite,
+    justifyContent: "center",
   },
   buttonsContainer: {
     gap: SPACING.sm,

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
@@ -8,7 +8,7 @@ import { COLORS, SPACING, FONT_SIZES } from "../theme";
 const WelcomeScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <StickyNote style={styles.note} noteColor={COLORS.stickyYellow}>
+      <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
         <ScreenTitle>Welcome, Adventurer</ScreenTitle>
         <View style={styles.bodyContainer}>
           <Text style={styles.bodyText}>
@@ -17,8 +17,8 @@ const WelcomeScreen = () => {
           </Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <PrimaryButton title="Login" noteColor={COLORS.stickyYellow} />
-          <PrimaryButton title="Sign Up" noteColor={COLORS.stickyYellow} />
+          <PrimaryButton title="Login" noteColor={COLORS.stickyBeige} />
+          <PrimaryButton title="Sign Up" noteColor={COLORS.stickyBeige} />
         </View>
       </StickyNote>
     </SafeAreaView>
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: SPACING.md,
     paddingTop: SPACING.lg,
-    backgroundColor: COLORS.notebookWhite,
+    // backgroundColor: COLORS.modalBackground,
+    justifyContent: "center",
   },
   bodyContainer: {
     marginTop: SPACING.sm,

@@ -83,7 +83,7 @@ const CampaignListScreen = ({ userId }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.notebookWhite,
+    // backgroundColor: COLORS.notebookWhite,
   },
   notesContainer: {
     flex: 1,
