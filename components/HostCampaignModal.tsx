@@ -25,7 +25,11 @@ const HostCampaignModal = ({ visible, setVisible }: Props) => {
       <StickyInput placeholder="Campaign Description" multiline={true} />
       <View style={styles.buttonsContainer}>
         <PrimaryButton title="Create" noteColor={COLORS.stickyYellow} />
-        <PrimaryButton title="Cancel" noteColor={COLORS.stickyYellow} />
+        <PrimaryButton
+          title="Cancel"
+          onPress={handleCancel}
+          noteColor={COLORS.stickyYellow}
+        />
       </View>
     </StickyModal>
   );
