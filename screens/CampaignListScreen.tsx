@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { View, StyleSheet, Text, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import PrimaryButton from "../components/PrimaryButton";
@@ -7,42 +8,35 @@ import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-import { useState } from "react";
-import {
-  USER_CAMPAIGN_LINKS,
-  UserCampaignLinkExpanded,
-} from "../data/links/UserCampaignLinks";
-import { CAMPAIGNS } from "../data/Campaigns";
+import { Campaign } from "../models/Campaign";
+import { getCampaigns } from "../repositories/Campaign";
 
 interface Props {
   userId: string;
 }
 
-const STARTING_CAMPAIGNS: Array<UserCampaignLinkExpanded> =
-  USER_CAMPAIGN_LINKS.map((user) => {
-    return {
-      ...user,
-      campaign: CAMPAIGNS.find((campaign) => campaign.id === user.campaignId),
-    };
-  });
-
 const CampaignListScreen = ({ userId }: Props) => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
-  const [userCampaigns, setUserCampaigns] = useState(
-    STARTING_CAMPAIGNS.filter((user) => user.userId === userId),
-  );
+  const startingCampaigns = getCampaigns(userId);
+  const [userCampaigns, setUserCampaigns] = useState(startingCampaigns);
 
   return (
     <SafeAreaView style={styles.container}>
       <JoinCampaignModal
         visible={joinModalOpen}
         setVisible={setJoinModalOpen}
+        userCampaigns={userCampaigns}
+        setUserCampaigns={setUserCampaigns}
+        userId={userId}
       />
       <HostCampaignModal
         visible={hostModalOpen}
         setVisible={setHostModalOpen}
+        setUserCampaigns={setUserCampaigns}
+        userCampaigns={userCampaigns}
+        userId={userId}
       />
       <ScreenTitle>My Campaigns</ScreenTitle>
       <View style={styles.buttonsContainer}>
@@ -60,17 +54,16 @@ const CampaignListScreen = ({ userId }: Props) => {
       <View style={styles.notesContainer}>
         <FlatList
           data={userCampaigns}
-          keyExtractor={(campaign) => campaign.id}
           renderItem={({ item }) => (
             <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
               <View style={styles.noteIcon}>
                 <MaterialDesignIcons
-                  name={item.isHost ? "crown" : "account"}
+                  name={item.userIsHost(userId) ? "crown" : "account"}
                   size={FONT_SIZES.title}
                 />
               </View>
               <View style={styles.container}>
-                <Text style={styles.noteText}>{item.campaign?.name}</Text>
+                <Text style={styles.noteText}>{item.name}</Text>
               </View>
             </StickyNote>
           )}
