@@ -8,8 +8,8 @@ import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-import { CampaignOverview } from "../models/Models";
-import { getCampaignOverviews } from "../repositories/StaticDataRepo";
+import { Campaign } from "../models/Campaign";
+import { getCampaigns } from "../repositories/Campaign";
 
 interface Props {
   userId: string;
@@ -19,7 +19,7 @@ const CampaignListScreen = ({ userId }: Props) => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
-  const startingCampaigns = getCampaignOverviews(userId);
+  const startingCampaigns = getCampaigns(userId);
   const [userCampaigns, setUserCampaigns] = useState(startingCampaigns);
 
   return (
@@ -50,12 +50,11 @@ const CampaignListScreen = ({ userId }: Props) => {
       <View style={styles.notesContainer}>
         <FlatList
           data={userCampaigns}
-          keyExtractor={(campaign) => campaign.id}
           renderItem={({ item }) => (
             <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
               <View style={styles.noteIcon}>
                 <MaterialDesignIcons
-                  name={item.userIsHost ? "crown" : "account"}
+                  name={item.userIsHost(userId) ? "crown" : "account"}
                   size={FONT_SIZES.title}
                 />
               </View>

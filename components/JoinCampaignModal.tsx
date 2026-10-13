@@ -5,14 +5,14 @@ import { COLORS, SPACING } from "../theme";
 import StickyModal from "./StickyModal";
 import StickyInput from "./StickyInput";
 import ScreenTitle from "./ScreenTitle";
-import { joinCampaign } from "../repositories/StaticDataRepo";
-import { CampaignOverview } from "../models/Models";
+import { joinCampaign } from "../repositories/Campaign";
+import { Campaign } from "../models/Campaign";
 
 interface Props {
   visible: boolean;
   setVisible: (visible: boolean) => void;
-  setUserCampaigns: (campaigns: Array<CampaignOverview>) => void;
-  userCampaigns: Array<CampaignOverview>;
+  setUserCampaigns: (campaigns: Array<Campaign>) => void;
+  userCampaigns: Array<Campaign>;
 }
 
 const HostCampaignModal = ({
@@ -29,13 +29,13 @@ const HostCampaignModal = ({
   }
 
   function handleJoin() {
-    setUserCampaigns(joinCampaign({ campaignId, userCampaigns }));
+    setUserCampaigns(joinCampaign(campaignId, userCampaigns));
     setVisible(false);
     setCampaignId("");
   }
 
   return (
-    <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
+    <StickyModal visible={visible} noteColor={COLORS.stickyBeige}>
       <ScreenTitle>Join Campaign</ScreenTitle>
       <View style={styles.textContainer}>
         <Text>Join an existing campaign</Text>
@@ -50,12 +50,12 @@ const HostCampaignModal = ({
         <PrimaryButton
           title="Join"
           onPress={handleJoin}
-          noteColor={COLORS.stickyYellow}
+          noteColor={COLORS.stickyBeige}
         />
         <PrimaryButton
           title="Cancel"
           onPress={handleCancel}
-          noteColor={COLORS.stickyYellow}
+          noteColor={COLORS.stickyBeige}
         />
       </View>
     </StickyModal>

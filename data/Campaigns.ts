@@ -1,23 +1,18 @@
-export interface DbCampaign {
-  id: string;
-  name: string;
-  description: string;
-}
+import { Campaign } from "../models/Campaign";
 
-export const CAMPAIGNS: Array<DbCampaign> = [
-  {
-    id: "1",
-    name: "Campaign 1",
-    description: "The first campaign",
-  },
-  {
-    id: "2",
-    name: "Campaign 2",
-    description: "The second campaign",
-  },
-  {
-    id: "3",
-    name: "Campaign 3",
-    description: "The third campaign",
-  },
+export const CAMPAIGNS: Array<Campaign> = [
+  new Campaign(
+    "1",
+    "OSE Spooky Woods",
+    "First time campaign using the OSE rules, set in a spooky forest.",
+    "0",
+    ["1"],
+  ),
+  new Campaign(
+    "2",
+    "Cairn Coastal",
+    "Coastal expedition in Cairn for a group of new players.",
+    "0",
+    ["2", "3", "4", "5"],
+  ),
 ];

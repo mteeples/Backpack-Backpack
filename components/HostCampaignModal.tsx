@@ -16,7 +16,7 @@ const HostCampaignModal = ({ visible, setVisible }: Props) => {
   }
 
   return (
-    <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
+    <StickyModal visible={visible} noteColor={COLORS.stickyBeige}>
       <ScreenTitle>Create Campaign</ScreenTitle>
       <View style={styles.textContainer}>
         <Text>Host a new campaign</Text>
@@ -24,11 +24,11 @@ const HostCampaignModal = ({ visible, setVisible }: Props) => {
       <StickyInput placeholder="Campaign Title" />
       <StickyInput placeholder="Campaign Description" multiline={true} />
       <View style={styles.buttonsContainer}>
-        <PrimaryButton title="Create" noteColor={COLORS.stickyYellow} />
+        <PrimaryButton title="Create" noteColor={COLORS.stickyBeige} />
         <PrimaryButton
           title="Cancel"
           onPress={handleCancel}
-          noteColor={COLORS.stickyYellow}
+          noteColor={COLORS.stickyBeige}
         />
       </View>
     </StickyModal>

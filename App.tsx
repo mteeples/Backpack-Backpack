@@ -19,7 +19,7 @@ export default function App() {
     <SafeAreaProvider>
       <ImageBackground
         style={{ flex: 1 }}
-        source={require("./assets/images/pexels-planka-27608025.jpg")}
+        source={require("./assets/images/pexels-834934396-20818871.jpg")}
         resizeMode="cover"
       >
         {pages[pageIndex]}
