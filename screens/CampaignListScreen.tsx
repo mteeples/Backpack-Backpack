@@ -29,10 +29,14 @@ const CampaignListScreen = ({ userId }: Props) => {
         setVisible={setJoinModalOpen}
         userCampaigns={userCampaigns}
         setUserCampaigns={setUserCampaigns}
+        userId={userId}
       />
       <HostCampaignModal
         visible={hostModalOpen}
         setVisible={setHostModalOpen}
+        setUserCampaigns={setUserCampaigns}
+        userCampaigns={userCampaigns}
+        userId={userId}
       />
       <ScreenTitle>My Campaigns</ScreenTitle>
       <View style={styles.buttonsContainer}>

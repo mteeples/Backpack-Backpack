@@ -13,6 +13,7 @@ interface Props {
   setVisible: (visible: boolean) => void;
   setUserCampaigns: (campaigns: Array<Campaign>) => void;
   userCampaigns: Array<Campaign>;
+  userId: string;
 }
 
 const HostCampaignModal = ({
@@ -20,6 +21,7 @@ const HostCampaignModal = ({
   setVisible,
   setUserCampaigns,
   userCampaigns,
+  userId,
 }: Props) => {
   const [campaignId, setCampaignId] = useState("");
 
@@ -29,7 +31,7 @@ const HostCampaignModal = ({
   }
 
   function handleJoin() {
-    setUserCampaigns(joinCampaign(campaignId, userCampaigns));
+    setUserCampaigns(joinCampaign(campaignId, userId, userCampaigns));
     setVisible(false);
     setCampaignId("");
   }
