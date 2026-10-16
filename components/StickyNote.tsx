@@ -15,7 +15,7 @@ const StickyNote = ({ children, style, noteColor }: Props) => {
 
 const styles = StyleSheet.create({
   note: {
-    borderRadius: 12,
+    borderRadius: 8,
     padding: SPACING.md,
     marginVertical: SPACING.sm,
     ...SHADOW,

@@ -37,7 +37,7 @@ const HostCampaignModal = ({
   }
 
   return (
-    <StickyModal visible={visible} noteColor={COLORS.stickyBeige}>
+    <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
       <ScreenTitle>Join Campaign</ScreenTitle>
       <View style={styles.textContainer}>
         <Text>Join an existing campaign</Text>
@@ -52,12 +52,12 @@ const HostCampaignModal = ({
         <PrimaryButton
           title="Join"
           onPress={handleJoin}
-          noteColor={COLORS.stickyBeige}
+          noteColor={COLORS.stickyYellow}
         />
         <PrimaryButton
           title="Cancel"
           onPress={handleCancel}
-          noteColor={COLORS.stickyBeige}
+          noteColor={COLORS.stickyYellow}
         />
       </View>
     </StickyModal>

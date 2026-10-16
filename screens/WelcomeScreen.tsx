@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS, SPACING, FONT_SIZES } from "../theme";
+
 import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
-import { COLORS, SPACING, FONT_SIZES } from "../theme";
+import NotebookSheet from "../components/NotebookSheet";
+import StickyModal from "../components/StickyModal";
 
 const WelcomeScreen = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
+      <StickyModal visible={true} noteColor={COLORS.stickyYellow}>
         <ScreenTitle>Welcome, Adventurer</ScreenTitle>
         <View style={styles.bodyContainer}>
           <Text style={styles.bodyText}>
@@ -17,10 +20,11 @@ const WelcomeScreen = () => {
           </Text>
         </View>
         <View style={styles.buttonsContainer}>
-          <PrimaryButton title="Login" noteColor={COLORS.stickyBeige} />
-          <PrimaryButton title="Sign Up" noteColor={COLORS.stickyBeige} />
+          <PrimaryButton title="Login" noteColor={COLORS.stickyYellow} />
+          <PrimaryButton title="Sign Up" noteColor={COLORS.stickyYellow} />
         </View>
-      </StickyNote>
+      </StickyModal>
+      <NotebookSheet />
     </SafeAreaView>
   );
 };
@@ -28,11 +32,6 @@ const WelcomeScreen = () => {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    alignItems: "center",
-    padding: SPACING.md,
-    paddingTop: SPACING.lg,
-    // backgroundColor: COLORS.modalBackground,
-    justifyContent: "center",
   },
   bodyContainer: {
     marginTop: SPACING.sm,

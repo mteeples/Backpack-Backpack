@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { View, StyleSheet, Text, FlatList } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { COLORS, FONT_SIZES, SPACING } from "../theme";
+import { getCampaigns } from "../repositories/Campaign";
+import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
+
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
-import StickyNote from "../components/StickyNote";
-import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
-import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-import { Campaign } from "../models/Campaign";
-import { getCampaigns } from "../repositories/Campaign";
+import NotebookSheet from "../components/NotebookSheet";
 
 interface Props {
   userId: string;
@@ -19,8 +19,30 @@ const CampaignListScreen = ({ userId }: Props) => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
-  const startingCampaigns = getCampaigns(userId);
-  const [userCampaigns, setUserCampaigns] = useState(startingCampaigns);
+  const [userCampaigns, setUserCampaigns] = useState(getCampaigns(userId));
+  const campaignItems = userCampaigns.map((campaign) => (
+    <Text>
+      <MaterialDesignIcons name="crown" size={FONT_SIZES.title} />{" "}
+      {campaign.name}
+    </Text>
+  ));
+  const nbItems = [
+    <ScreenTitle>My Campaigns</ScreenTitle>,
+    <View style={styles.buttonsContainer}>
+      <PrimaryButton
+        title="Host"
+        style={styles.button}
+        onPress={() => setHostModalOpen(true)}
+      />
+      <PrimaryButton
+        title="Join"
+        style={styles.button}
+        onPress={() => setJoinModalOpen(true)}
+      />
+    </View>,
+
+    ...campaignItems,
+  ];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -38,36 +60,8 @@ const CampaignListScreen = ({ userId }: Props) => {
         userCampaigns={userCampaigns}
         userId={userId}
       />
-      <ScreenTitle>My Campaigns</ScreenTitle>
-      <View style={styles.buttonsContainer}>
-        <PrimaryButton
-          title="Host"
-          style={styles.button}
-          onPress={() => setHostModalOpen(true)}
-        />
-        <PrimaryButton
-          title="Join"
-          style={styles.button}
-          onPress={() => setJoinModalOpen(true)}
-        />
-      </View>
       <View style={styles.notesContainer}>
-        <FlatList
-          data={userCampaigns}
-          renderItem={({ item }) => (
-            <StickyNote style={styles.note} noteColor={COLORS.stickyBeige}>
-              <View style={styles.noteIcon}>
-                <MaterialDesignIcons
-                  name={item.userIsHost(userId) ? "crown" : "account"}
-                  size={FONT_SIZES.title}
-                />
-              </View>
-              <View style={styles.container}>
-                <Text style={styles.noteText}>{item.name}</Text>
-              </View>
-            </StickyNote>
-          )}
-        />
+        <NotebookSheet data={nbItems} />
       </View>
     </SafeAreaView>
   );
@@ -76,11 +70,10 @@ const CampaignListScreen = ({ userId }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: COLORS.notebookWhite,
+    backgroundColor: COLORS.notebookWhite,
   },
   notesContainer: {
     flex: 1,
-    paddingHorizontal: SPACING.md,
   },
   noteIcon: {
     padding: SPACING.sm,
@@ -101,9 +94,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     gap: SPACING.md,
-    paddingTop: SPACING.lg,
-    paddingBottom: SPACING.md,
-    paddingHorizontal: SPACING.lg,
   },
 });
 

@@ -39,7 +39,7 @@ const HostCampaignModal = ({
   }
 
   return (
-    <StickyModal visible={visible} noteColor={COLORS.stickyBeige}>
+    <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
       <ScreenTitle>Create Campaign</ScreenTitle>
       <View style={styles.textContainer}>
         <Text>Host a new campaign</Text>
@@ -58,13 +58,13 @@ const HostCampaignModal = ({
       <View style={styles.buttonsContainer}>
         <PrimaryButton
           title="Create"
-          noteColor={COLORS.stickyBeige}
+          noteColor={COLORS.stickyYellow}
           onPress={handleHost}
         />
         <PrimaryButton
           title="Cancel"
           onPress={handleCancel}
-          noteColor={COLORS.stickyBeige}
+          noteColor={COLORS.stickyYellow}
         />
       </View>
     </StickyModal>

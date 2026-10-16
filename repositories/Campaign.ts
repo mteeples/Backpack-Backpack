@@ -33,7 +33,6 @@ export function joinCampaign(
 
   const newCampaign = campaign[0];
   return [
-    ...userCampaigns,
     new Campaign(
       newCampaign.id,
       newCampaign.name,
@@ -41,6 +40,7 @@ export function joinCampaign(
       newCampaign.hostId,
       [...newCampaign.playerIds, userId],
     ),
+    ...userCampaigns,
   ];
 }
 
@@ -51,7 +51,7 @@ export function hostGame(
   userCampaigns: Array<Campaign>,
 ): Array<Campaign> {
   return [
-    ...userCampaigns,
     new Campaign(Math.random().toString(), name, description, userId, []),
+    ...userCampaigns,
   ];
 }

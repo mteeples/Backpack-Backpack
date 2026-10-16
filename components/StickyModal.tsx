@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Modal, StyleSheet } from "react-native";
+import { Modal, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, SPACING } from "../theme";
 import StickyNote from "./StickyNote";
@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: SPACING.lg,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     backgroundColor: COLORS.modalBackground,
   },
   note: {
-    marginTop: SPACING.lg,
+    marginBottom: SPACING.lg * 3,
   },
 });
 
