@@ -39,7 +39,7 @@ const CharacterListScreen = ({ navigation, route }: Props) => {
     <View style={styles.buttonsContainer}>
       <NotebookButton
         text="New Character"
-        highlightColor={COLORS.highlighterYellow}
+        highlightColor={COLORS.highlighterBlue}
       />
     </View>,
     <ScreenTitle></ScreenTitle>,

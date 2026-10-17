@@ -71,6 +71,7 @@ export default function App() {
             headerRight: () => (
               <LogoutButton onPress={() => navigation.navigate("SignIn")} />
             ),
+            title: "Inventory",
           })}
         />
         <Stack.Screen

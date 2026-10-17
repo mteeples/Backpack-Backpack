@@ -10,3 +10,7 @@ export function getCharacters(
       character.campaignId === campaignId && character.userId === userId,
   );
 }
+
+export function getCharacter(characterId: string): Character | undefined {
+  return CHARACTERS.find((character) => character.id === characterId);
+}

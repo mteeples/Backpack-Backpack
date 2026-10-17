@@ -37,7 +37,7 @@ const AdventureListScreen = ({ navigation, route }: Props) => {
     <View style={styles.buttonsContainer}>
       <NotebookButton
         text="New Adventure"
-        highlightColor={COLORS.highlighterYellow}
+        highlightColor={COLORS.highlighterPink}
       />
     </View>,
     <ScreenTitle></ScreenTitle>,
