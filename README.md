@@ -18,7 +18,7 @@ Conditionally renders one of the following options, depending on the number of c
 
 -  **At least one linked campaign** -> Renders a list of cards representing linked campaigns. The cards indicate whether the user is the host or a player. The cards redirect the user to its associated **Campaign** screen.
 
-### Campaign Screen
+### Campaign Detail Screen
 
 Conditionally renders one of the following, depending on the user's role in the campaign (*host* or *player*). Either page shows a list of cards with an *add* button, which opens a modal to add a new item. The host/player distinction is as follows:
 
@@ -26,11 +26,11 @@ Conditionally renders one of the following, depending on the user's role in the 
 
 - **Player** -> Cards represent *characters* and link to their associated **CharacterStats** screen. Characters can be markes active/inactive. The modal will have minimal customization options to create a new character and will redirect to the appropriate **CharacterStats** page on submit.
 
-### CharacterStats Screen
+### Character Stats Screen
 
 Shows the character information and a button linking to the **CharacterInventory** screen. Interacting with the screen should persist updates to the database.
 
-### CharacterInventory Screen
+### Character Inventory Screen
 
 Renders a list of cards representing inventory items as well as a component showing the total weight carried as well as a *refresh* button (until I can implement a websocket backend). Note that there is not a button to add a new item, as new items will come from either the host or another player. Each card will have buttons to equip/unequip, remove, or share. The share button opens a modal with the other active characters in the campaign.
 
