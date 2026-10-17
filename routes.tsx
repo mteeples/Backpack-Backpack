@@ -1,9 +1,9 @@
 export type RootStackParamList = {
-  AdventureDetail: undefined;
-  CampaignDetail: undefined;
-  CampaignList: undefined;
-  CharacterInventory: undefined;
-  CharacterStats: undefined;
+  AdventureDetail: { adventureId: string };
+  CampaignDetail: { userId: string; campaignId: string };
+  CampaignList: { userId: string };
+  CharacterInventory: { characterId: string };
+  CharacterStats: { characterId: string };
   SignIn: undefined;
   SignUp: undefined;
 };

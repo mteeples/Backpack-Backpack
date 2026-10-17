@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../routes";
 import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import { getCampaigns } from "../repositories/Campaign";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import NotebookSheet from "../components/NotebookSheet";
+
+type Props = NativeStackScreenProps<RootStackParamList, "CampaignList">;
 
 const CampaignListScreen = () => {
   const userId = "1"; //TODO implement authentication

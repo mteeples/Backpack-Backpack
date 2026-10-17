@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import { COLORS, SPACING, FONT_SIZES } from "../theme";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
 import { RootStackParamList } from "../routes";
 import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
@@ -16,7 +15,7 @@ const SignInScreen = ({ navigation }: Props) => {
       <StickyNote noteColor={COLORS.stickyYellow}>
         <ScreenTitle>Sign In</ScreenTitle>
 
-        <StickyInput placeholder="Campaign Title" />
+        <StickyInput placeholder="Username" />
         <StickyInput
           placeholder="Password"
           textContentType="password"
@@ -27,12 +26,13 @@ const SignInScreen = ({ navigation }: Props) => {
           <PrimaryButton
             title="Sign In"
             noteColor={COLORS.stickyYellow}
-            onPress={() => navigation.navigate("CampaignList")}
+            onPress={() => navigation.navigate("CampaignList", { userId: "1" })}
           />
           <Text style={styles.orText}>or</Text>
           <PrimaryButton
             title="Create Account"
             noteColor={COLORS.stickyYellow}
+            onPress={() => navigation.navigate("SignUp")}
           />
         </View>
       </StickyNote>
