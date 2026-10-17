@@ -6,7 +6,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "./routes";
 
 import AdventureDetailScreen from "./screens/AdventureDetailScreen";
-import CampaignDetailScreen from "./screens/CampaignDetailScreen";
+import AdventureListScreen from "./screens/AdventureListScreen";
+import CharacterListScreen from "./screens/CharacterListScreen";
 import CampaignListScreen from "./screens/CampaignListScreen";
 import CharacterInventoryScreen from "./screens/CharacterInventoryScreen";
 import CharacterStatsScreen from "./screens/CharacterStatsScreen";
@@ -36,8 +37,17 @@ export default function App() {
           })}
         />
         <Stack.Screen
-          name="CampaignDetail"
-          component={CampaignDetailScreen}
+          name="AdventureList"
+          component={AdventureListScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="CharacterList"
+          component={CharacterListScreen}
           options={({ navigation }) => ({
             headerRight: () => (
               <LogoutButton onPress={() => navigation.navigate("SignIn")} />
@@ -51,6 +61,7 @@ export default function App() {
             headerRight: () => (
               <LogoutButton onPress={() => navigation.navigate("SignIn")} />
             ),
+            title: "My Campaigns",
           })}
         />
         <Stack.Screen
@@ -76,12 +87,16 @@ export default function App() {
           component={SignInScreen}
           options={({ navigation }) => ({
             headerLeft: () => null,
+            title: "Sign In",
           })}
         />
         <Stack.Screen
           name="SignUp"
           component={SignUpScreen}
-          options={{ headerLeft: () => undefined }}
+          options={{
+            headerLeft: () => undefined,
+            title: "Create Account",
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

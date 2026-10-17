@@ -23,18 +23,23 @@ const CampaignListScreen = ({ navigation, route }: Props) => {
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
   const [userCampaigns, setUserCampaigns] = useState(getCampaigns(userId));
-  const campaignItems = userCampaigns.map((campaign) => (
-    <CampaignItem
-      title={campaign.name}
-      isHost={campaign.userIsHost(userId)}
-      onPress={() =>
-        navigation.navigate("CampaignDetail", {
-          campaignId: campaign.id,
-          userId: userId,
-        })
-      }
-    />
-  ));
+  const campaignItems = userCampaigns.map((campaign) => {
+    const isHost = campaign.userIsHost(userId);
+    const destination = isHost ? "AdventureList" : "CharacterList";
+
+    return (
+      <CampaignItem
+        title={campaign.name}
+        isHost={isHost}
+        onPress={() =>
+          navigation.navigate(destination, {
+            campaignId: campaign.id,
+            userId,
+          })
+        }
+      />
+    );
+  });
   const nbItems = [
     <View style={styles.buttonsContainer}>
       <NotebookButton

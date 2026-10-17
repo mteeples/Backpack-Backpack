@@ -1,6 +1,10 @@
 import { Alert } from "react-native";
 import { Campaign } from "../models/Campaign";
-import { CAMPAIGNS } from "../data/Campaigns";
+import { CAMPAIGNS } from "../data/dummy-data";
+
+export function getCampaign(campaignId: string): Campaign | undefined {
+  return CAMPAIGNS.find((campaign) => campaign.id === campaignId);
+}
 
 export function getCampaigns(userId: string): Array<Campaign> {
   return CAMPAIGNS.filter(
