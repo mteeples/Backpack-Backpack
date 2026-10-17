@@ -3,7 +3,9 @@ import { Campaign } from "../models/Campaign";
 import { CAMPAIGNS } from "../data/Campaigns";
 
 export function getCampaigns(userId: string): Array<Campaign> {
-  return CAMPAIGNS.filter((campaign) => campaign.userIsPlayer(userId));
+  return CAMPAIGNS.filter(
+    (campaign) => campaign.userIsPlayer(userId) || campaign.userIsHost(userId),
+  );
 }
 
 export function joinCampaign(

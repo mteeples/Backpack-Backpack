@@ -5,7 +5,7 @@ export const CAMPAIGNS: Array<Campaign> = [
     "1",
     "OSE Spooky Woods",
     "First time campaign using the OSE rules, set in a spooky forest.",
-    "0",
+    "1",
     ["1"],
   ),
   new Campaign(
@@ -13,6 +13,6 @@ export const CAMPAIGNS: Array<Campaign> = [
     "Cairn Coastal",
     "Coastal expedition in Cairn for a group of new players.",
     "0",
-    ["2", "3", "4", "5"],
+    ["1", "2", "3", "4", "5"],
   ),
 ];

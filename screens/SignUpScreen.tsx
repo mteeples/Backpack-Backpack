@@ -7,7 +7,7 @@ import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
 import StickyInput from "../components/StickyInput";
 
-type Props = NativeStackScreenProps<RootStackParamList, "SignIn">;
+type Props = NativeStackScreenProps<RootStackParamList, "SignUp">;
 
 const SignUpScreen = ({ navigation }: Props) => {
   return (

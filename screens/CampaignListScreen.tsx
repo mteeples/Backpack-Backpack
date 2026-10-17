@@ -11,42 +11,54 @@ import ScreenTitle from "../components/ScreenTitle";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import NotebookSheet from "../components/NotebookSheet";
+import NotebookButton from "../components/NotebookButton";
+import CampaignItem from "../components/CampaignItem";
 
 type Props = NativeStackScreenProps<RootStackParamList, "CampaignList">;
 
-const CampaignListScreen = () => {
-  const userId = "1"; //TODO implement authentication
+const CampaignListScreen = ({ navigation, route }: Props) => {
+  const { userId } = route.params;
 
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
   const [userCampaigns, setUserCampaigns] = useState(getCampaigns(userId));
   const campaignItems = userCampaigns.map((campaign) => (
-    <Text>
-      <MaterialDesignIcons name="crown" size={FONT_SIZES.title} />{" "}
-      {campaign.name}
-    </Text>
+    <CampaignItem
+      title={campaign.name}
+      isHost={campaign.userIsHost(userId)}
+      onPress={() =>
+        navigation.navigate("CampaignDetail", {
+          campaignId: campaign.id,
+          userId: userId,
+        })
+      }
+    />
   ));
   const nbItems = [
-    <ScreenTitle>My Campaigns</ScreenTitle>,
     <View style={styles.buttonsContainer}>
-      <PrimaryButton
-        title="Host"
-        style={styles.button}
+      <NotebookButton
+        text="Host"
+        highlightColor={COLORS.highlighterYellow}
         onPress={() => setHostModalOpen(true)}
       />
-      <PrimaryButton
-        title="Join"
-        style={styles.button}
+    </View>,
+    <View style={styles.buttonsContainer}>
+      <NotebookButton
+        text="Join"
+        highlightColor={COLORS.highlighterYellow}
         onPress={() => setJoinModalOpen(true)}
       />
     </View>,
+    <ScreenTitle></ScreenTitle>,
+    <ScreenTitle>My Campaigns</ScreenTitle>,
+    <ScreenTitle></ScreenTitle>,
 
     ...campaignItems,
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <JoinCampaignModal
         visible={joinModalOpen}
         setVisible={setJoinModalOpen}
@@ -64,7 +76,7 @@ const CampaignListScreen = () => {
       <View style={styles.notesContainer}>
         <NotebookSheet data={nbItems} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -93,7 +105,8 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-end",
+    marginHorizontal: SPACING.lg,
     gap: SPACING.md,
   },
 });
