@@ -1,17 +1,19 @@
 import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS, SPACING, FONT_SIZES } from "../theme";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import StickyModal from "../components/StickyModal";
+import { RootStackParamList } from "../routes";
+import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
 import StickyInput from "../components/StickyInput";
-import NotebookSheet from "../components/NotebookSheet";
 
-const SignInScreen = () => {
+type Props = NativeStackScreenProps<RootStackParamList, "SignIn">;
+
+const SignInScreen = ({ navigation }: Props) => {
   return (
-    <SafeAreaView style={styles.rootContainer}>
-      <StickyModal visible={true} noteColor={COLORS.stickyYellow}>
+    <View style={styles.rootContainer}>
+      <StickyNote noteColor={COLORS.stickyYellow}>
         <ScreenTitle>Sign In</ScreenTitle>
 
         <StickyInput placeholder="Campaign Title" />
@@ -22,22 +24,28 @@ const SignInScreen = () => {
           secureTextEntry={true}
         />
         <View style={styles.buttonsContainer}>
-          <PrimaryButton title="Sign In" noteColor={COLORS.stickyYellow} />
+          <PrimaryButton
+            title="Sign In"
+            noteColor={COLORS.stickyYellow}
+            onPress={() => navigation.navigate("CampaignList")}
+          />
           <Text style={styles.orText}>or</Text>
           <PrimaryButton
             title="Create Account"
             noteColor={COLORS.stickyYellow}
           />
         </View>
-      </StickyModal>
-      <NotebookSheet />
-    </SafeAreaView>
+      </StickyNote>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+    backgroundColor: COLORS.notebookWhite,
+    paddingTop: SPACING.lg * 3,
+    paddingHorizontal: SPACING.lg,
   },
   buttonsContainer: {
     gap: SPACING.sm,

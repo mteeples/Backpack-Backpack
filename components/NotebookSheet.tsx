@@ -1,4 +1,4 @@
-import { FlatList, View, Text } from "react-native";
+import { FlatList, View, Text, StyleSheet } from "react-native";
 
 import NotebookLineItem from "./NotebookLineItem";
 import { ReactNode } from "react";
@@ -21,7 +21,7 @@ const NotebookSheet = ({ data }: Props) => {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={fillData()}
         renderItem={({ item }) => <NotebookLineItem>{item}</NotebookLineItem>}
@@ -30,5 +30,12 @@ const NotebookSheet = ({ data }: Props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: 0,
+  },
+});
 
 export default NotebookSheet;

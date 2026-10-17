@@ -11,11 +11,9 @@ import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
 import NotebookSheet from "../components/NotebookSheet";
 
-interface Props {
-  userId: string;
-}
+const CampaignListScreen = () => {
+  const userId = "1"; //TODO implement authentication
 
-const CampaignListScreen = ({ userId }: Props) => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
