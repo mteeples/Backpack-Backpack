@@ -1,65 +1,80 @@
-import { Modal, StyleSheet, View, TextInput, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Card from "./Card";
-import PrimaryButton from "./PrimaryButton";
+import { useState } from "react";
+import { StyleSheet, View, Text } from "react-native";
 import { COLORS, SPACING } from "../theme";
+import PrimaryButton from "./PrimaryButton";
+import StickyModal from "./StickyModal";
+import StickyInput from "./StickyInput";
 import ScreenTitle from "./ScreenTitle";
+import { Campaign } from "../models/Campaign";
+import { hostGame } from "../repositories/Campaign";
 
 interface Props {
   visible: boolean;
   setVisible: (visible: boolean) => void;
+  setUserCampaigns: (campaigns: Array<Campaign>) => void;
+  userCampaigns: Array<Campaign>;
+  userId: string;
 }
 
-const HostCampaignModal = ({ visible, setVisible }: Props) => {
+const HostCampaignModal = ({
+  visible,
+  setVisible,
+  setUserCampaigns,
+  userCampaigns,
+  userId,
+}: Props) => {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  function handleHost() {
+    const newCampaigns = hostGame(title, description, userId, userCampaigns);
+    setUserCampaigns(newCampaigns);
+    handleCancel();
+  }
+
   function handleCancel() {
     setVisible(false);
+    setTitle("");
+    setDescription("");
   }
 
   return (
-    <Modal visible={visible} animationType="slide" transparent={true}>
-      <SafeAreaView style={styles.container}>
-        <Card style={styles.card}>
-          <ScreenTitle>Create Campaign</ScreenTitle>
-          <View style={styles.textContainer}>
-            <Text>Host a new campaign</Text>
-          </View>
-          <TextInput placeholder="Campaign Title" style={styles.textInput} />
-          <TextInput
-            placeholder="Campaign Description"
-            multiline={true}
-            style={styles.textInput}
-          />
-          <View style={styles.buttonsContainer}>
-            <PrimaryButton title="Create" />
-            <PrimaryButton title="Cancel" onPress={handleCancel} />
-          </View>
-        </Card>
-      </SafeAreaView>
-    </Modal>
+    <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
+      <ScreenTitle>Create Campaign</ScreenTitle>
+      <View style={styles.textContainer}>
+        <Text>Host a new campaign</Text>
+      </View>
+      <StickyInput
+        placeholder="Campaign Title"
+        value={title}
+        onChangeText={setTitle}
+      />
+      <StickyInput
+        placeholder="Campaign Description"
+        multiline={true}
+        value={description}
+        onChangeText={setDescription}
+      />
+      <View style={styles.buttonsContainer}>
+        <PrimaryButton
+          title="Create"
+          noteColor={COLORS.stickyYellow}
+          onPress={handleHost}
+        />
+        <PrimaryButton
+          title="Cancel"
+          onPress={handleCancel}
+          noteColor={COLORS.stickyYellow}
+        />
+      </View>
+    </StickyModal>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: SPACING.lg,
-    justifyContent: "flex-start",
-    backgroundColor: "rgba(15, 36, 57, 0.8)",
-  },
-  card: {
-    marginTop: SPACING.lg,
-  },
   textContainer: {
     marginBottom: SPACING.md,
     alignItems: "center",
-  },
-  textInput: {
-    padding: SPACING.sm,
-    borderColor: COLORS.primary,
-    borderRadius: 8,
-    borderWidth: 1,
-    marginBottom: SPACING.lg,
-    fontSize: SPACING.md,
   },
   buttonsContainer: {
     gap: SPACING.sm,

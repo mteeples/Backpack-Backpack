@@ -1,60 +1,73 @@
-import { Modal, StyleSheet, View, TextInput, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Card from "./Card";
+import { useState } from "react";
+import { StyleSheet, View, Text } from "react-native";
 import PrimaryButton from "./PrimaryButton";
 import { COLORS, SPACING } from "../theme";
+import StickyModal from "./StickyModal";
+import StickyInput from "./StickyInput";
 import ScreenTitle from "./ScreenTitle";
+import { joinCampaign } from "../repositories/Campaign";
+import { Campaign } from "../models/Campaign";
 
 interface Props {
   visible: boolean;
   setVisible: (visible: boolean) => void;
+  setUserCampaigns: (campaigns: Array<Campaign>) => void;
+  userCampaigns: Array<Campaign>;
+  userId: string;
 }
 
-const HostCampaignModal = ({ visible, setVisible }: Props) => {
+const HostCampaignModal = ({
+  visible,
+  setVisible,
+  setUserCampaigns,
+  userCampaigns,
+  userId,
+}: Props) => {
+  const [campaignId, setCampaignId] = useState("");
+
   function handleCancel() {
     setVisible(false);
+    setCampaignId("");
+  }
+
+  function handleJoin() {
+    setUserCampaigns(joinCampaign(campaignId, userId, userCampaigns));
+    setVisible(false);
+    setCampaignId("");
   }
 
   return (
-    <Modal visible={visible} animationType="slide" transparent={true}>
-      <SafeAreaView style={styles.container}>
-        <Card style={styles.card}>
-          <ScreenTitle>Join Campaign</ScreenTitle>
-          <View style={styles.textContainer}>
-            <Text>Join an existing campaign</Text>
-          </View>
-          <TextInput placeholder="Join Code" style={styles.textInput} />
-          <View style={styles.buttonsContainer}>
-            <PrimaryButton title="Join" />
-            <PrimaryButton title="Cancel" onPress={handleCancel} />
-          </View>
-        </Card>
-      </SafeAreaView>
-    </Modal>
+    <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
+      <ScreenTitle>Join Campaign</ScreenTitle>
+      <View style={styles.textContainer}>
+        <Text>Join an existing campaign</Text>
+      </View>
+      <StickyInput
+        placeholder="Join Code"
+        value={campaignId}
+        onChangeText={setCampaignId}
+        keyboardType="numeric"
+      />
+      <View style={styles.buttonsContainer}>
+        <PrimaryButton
+          title="Join"
+          onPress={handleJoin}
+          noteColor={COLORS.stickyYellow}
+        />
+        <PrimaryButton
+          title="Cancel"
+          onPress={handleCancel}
+          noteColor={COLORS.stickyYellow}
+        />
+      </View>
+    </StickyModal>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: SPACING.lg,
-    justifyContent: "flex-start",
-    backgroundColor: "rgba(15, 36, 57, 0.8)",
-  },
-  card: {
-    marginTop: SPACING.lg,
-  },
   textContainer: {
     marginBottom: SPACING.md,
     alignItems: "center",
-  },
-  textInput: {
-    padding: SPACING.sm,
-    borderColor: COLORS.primary,
-    borderRadius: 8,
-    borderWidth: 1,
-    marginBottom: SPACING.lg,
-    fontSize: SPACING.md,
   },
   buttonsContainer: {
     gap: SPACING.sm,

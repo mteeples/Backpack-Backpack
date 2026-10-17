@@ -1,102 +1,108 @@
-import { View, StyleSheet, Text, FlatList } from "react-native";
+import { useState } from "react";
+import { View, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../routes";
+import { COLORS, FONT_SIZES, SPACING } from "../theme";
+import { getCampaigns } from "../repositories/Campaign";
+import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
-import Card from "../components/Card";
-import { FONT_SIZES, SPACING } from "../theme";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
-import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-import { useState } from "react";
-import {
-  USER_CAMPAIGN_LINKS,
-  UserCampaignLinkExpanded,
-} from "../data/links/UserCampaignLinks";
-import { CAMPAIGNS } from "../data/Campaigns";
+import NotebookSheet from "../components/NotebookSheet";
+import NotebookButton from "../components/NotebookButton";
+import CampaignItem from "../components/CampaignItem";
 
-interface Props {
-  userId: string;
-}
+type Props = NativeStackScreenProps<RootStackParamList, "CampaignList">;
 
-const STARTING_CAMPAIGNS: Array<UserCampaignLinkExpanded> =
-  USER_CAMPAIGN_LINKS.map((user) => {
-    return {
-      ...user,
-      campaign: CAMPAIGNS.find((campaign) => campaign.id === user.campaignId),
-    };
-  });
+const CampaignListScreen = ({ navigation, route }: Props) => {
+  const { userId } = route.params;
 
-const CampaignListScreen = ({ userId }: Props) => {
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
 
-  const [userCampaigns, setUserCampaigns] = useState(
-    STARTING_CAMPAIGNS.filter((user) => user.userId === userId),
-  );
+  const [userCampaigns, setUserCampaigns] = useState(getCampaigns(userId));
+  const campaignItems = userCampaigns.map((campaign) => {
+    const isHost = campaign.userIsHost(userId);
+    const destination = isHost ? "AdventureList" : "CharacterList";
+
+    return (
+      <CampaignItem
+        title={campaign.name}
+        isHost={isHost}
+        onPress={() =>
+          navigation.navigate(destination, {
+            campaignId: campaign.id,
+            userId,
+          })
+        }
+      />
+    );
+  });
+  const nbItems = [
+    <View style={styles.buttonsContainer}>
+      <NotebookButton
+        text="Host"
+        highlightColor={COLORS.highlighterYellow}
+        onPress={() => setHostModalOpen(true)}
+      />
+    </View>,
+    <View style={styles.buttonsContainer}>
+      <NotebookButton
+        text="Join"
+        highlightColor={COLORS.highlighterYellow}
+        onPress={() => setJoinModalOpen(true)}
+      />
+    </View>,
+    <ScreenTitle></ScreenTitle>,
+    <ScreenTitle>My Campaigns</ScreenTitle>,
+    <ScreenTitle></ScreenTitle>,
+
+    ...campaignItems,
+  ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <JoinCampaignModal
         visible={joinModalOpen}
         setVisible={setJoinModalOpen}
+        userCampaigns={userCampaigns}
+        setUserCampaigns={setUserCampaigns}
+        userId={userId}
       />
       <HostCampaignModal
         visible={hostModalOpen}
         setVisible={setHostModalOpen}
+        setUserCampaigns={setUserCampaigns}
+        userCampaigns={userCampaigns}
+        userId={userId}
       />
-      <ScreenTitle>My Campaigns</ScreenTitle>
-      <View style={styles.buttonsContainer}>
-        <PrimaryButton
-          title="Host"
-          style={styles.button}
-          onPress={() => setHostModalOpen(true)}
-        />
-        <PrimaryButton
-          title="Join"
-          style={styles.button}
-          onPress={() => setJoinModalOpen(true)}
-        />
+      <View style={styles.notesContainer}>
+        <NotebookSheet data={nbItems} />
       </View>
-      <View style={styles.cardsContainer}>
-        <FlatList
-          data={userCampaigns}
-          keyExtractor={(campaign) => campaign.id}
-          renderItem={({ item }) => (
-            <Card style={styles.card}>
-              <View style={styles.cardIcon}>
-                <MaterialDesignIcons
-                  name={item.isHost ? "crown" : "account"}
-                  size={FONT_SIZES.title}
-                />
-              </View>
-              <View style={styles.container}>
-                <Text style={styles.cardText}>{item.campaign?.name}</Text>
-              </View>
-            </Card>
-          )}
-        />
-      </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.notebookWhite,
   },
-  cardsContainer: {
+  notesContainer: {
     flex: 1,
-    paddingHorizontal: SPACING.md,
   },
-  cardIcon: {
+  noteIcon: {
     padding: SPACING.sm,
   },
-  card: {
+  note: {
     flexDirection: "row",
     alignItems: "center",
   },
-  cardText: {
+  noteText: {
     fontSize: FONT_SIZES.body,
+    backgroundColor: COLORS.stickyBeige,
   },
   button: {
     flex: 1,
@@ -104,11 +110,9 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "flex-end",
+    marginHorizontal: SPACING.lg,
     gap: SPACING.md,
-    paddingTop: SPACING.lg,
-    paddingBottom: SPACING.md,
-    paddingHorizontal: SPACING.lg,
   },
 });
 

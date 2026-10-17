@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: FONT_SIZES.title,
     fontWeight: "bold",
-    color: COLORS.text,
+    color: COLORS.ballpointBlack,
     marginBottom: SPACING.sm,
-    textAlign: "center",
+    marginHorizontal: SPACING.sm,
   },
 });
 

@@ -1,48 +1,111 @@
-import { useState } from "react";
-import { ImageBackground, StyleSheet, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native";
+import { COLORS } from "./theme";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import { RootStackParamList } from "./routes";
+
+import AdventureDetailScreen from "./screens/AdventureDetailScreen";
+import AdventureListScreen from "./screens/AdventureListScreen";
+import CharacterListScreen from "./screens/CharacterListScreen";
 import CampaignListScreen from "./screens/CampaignListScreen";
-import WelcomeScreen from "./screens/WelcomeScreen";
+import CharacterInventoryScreen from "./screens/CharacterInventoryScreen";
+import CharacterStatsScreen from "./screens/CharacterStatsScreen";
 import SignInScreen from "./screens/SignInScreen";
-import PrimaryButton from "./components/PrimaryButton";
-import { SPACING } from "./theme";
+import SignUpScreen from "./screens/SignUpScreen";
+import LogoutButton from "./components/LogoutButton";
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  const pages = [
-    <WelcomeScreen />,
-    <SignInScreen />,
-    <CampaignListScreen userId={"1"} />,
-  ];
-  const [pageIndex, setPageIndex] = useState(0);
-
   return (
-    <SafeAreaProvider>
-      <ImageBackground
-        source={require("./assets/images/pexels-jorge-acre-239933086-17061995.jpg")}
-        resizeMode="cover"
-        style={styles.background}
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="SignIn"
+        screenOptions={{
+          headerStyle: { backgroundColor: COLORS.ballpointBlack },
+          headerTintColor: COLORS.notebookWhite,
+        }}
       >
-        {pages[pageIndex]}
-        <View style={styles.navButtons}>
-          <PrimaryButton title="Welcome" onPress={() => setPageIndex(0)} />
-          <PrimaryButton title="Sign In" onPress={() => setPageIndex(1)} />
-          <PrimaryButton
-            title="Campaign List"
-            onPress={() => setPageIndex(2)}
-          />
-        </View>
-      </ImageBackground>
-    </SafeAreaProvider>
+        <Stack.Screen
+          name="AdventureDetail"
+          component={AdventureDetailScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="AdventureList"
+          component={AdventureListScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="CharacterList"
+          component={CharacterListScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="CampaignList"
+          component={CampaignListScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
+            ),
+            title: "My Campaigns",
+          })}
+        />
+        <Stack.Screen
+          name="CharacterInventory"
+          component={CharacterInventoryScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
+            ),
+            title: "Inventory",
+          })}
+        />
+        <Stack.Screen
+          name="CharacterStats"
+          component={CharacterStatsScreen}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
+            ),
+          })}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={({ navigation }) => ({
+            headerLeft: () => null,
+            title: "Sign In",
+          })}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{
+            headerLeft: () => undefined,
+            title: "Create Account",
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
-  navButtons: {
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginBottom: SPACING.md,
+  header: {
+    backgroundColor: COLORS.notebookWhite,
   },
 });
