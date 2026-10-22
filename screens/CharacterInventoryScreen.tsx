@@ -1,13 +1,13 @@
 import { View, StyleSheet } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../routes";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { CharacterDetailParams } from "../routes";
 import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import ScreenTitle from "../components/ScreenTitle";
 import NotebookSheet from "../components/NotebookSheet";
 import NotebookButton from "../components/NotebookButton";
 import { getCharacter } from "../repositories/Character";
 
-type Props = NativeStackScreenProps<RootStackParamList, "CharacterInventory">;
+type Props = BottomTabScreenProps<CharacterDetailParams, "Inventory">;
 
 const CharacterInventoryScreen = ({ navigation, route }: Props) => {
   const { characterId } = route.params;
@@ -18,7 +18,7 @@ const CharacterInventoryScreen = ({ navigation, route }: Props) => {
       <NotebookButton
         text="Stats"
         highlightColor={COLORS.highlighterBlue}
-        onPress={() => navigation.navigate("CharacterStats", { characterId })}
+        onPress={() => navigation.navigate("Stats", { characterId })}
       />
     </View>,
     <ScreenTitle></ScreenTitle>,
