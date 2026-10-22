@@ -29,9 +29,7 @@ const CharacterListScreen = ({ navigation, route }: Props) => {
     <CharacterItem
       title={character.name}
       onPress={() =>
-        navigation.navigate("CharacterStats", {
-          characterId: character.id,
-        })
+        navigation.navigate("CharacterDetail", { characterId: character.id })
       }
     />
   ));

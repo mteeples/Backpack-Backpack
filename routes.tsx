@@ -3,8 +3,12 @@ export type RootStackParamList = {
   AdventureList: { userId: string; campaignId: string };
   CampaignList: { userId: string };
   CharacterList: { userId: string; campaignId: string };
-  CharacterInventory: { characterId: string };
-  CharacterStats: { characterId: string };
+  CharacterDetail: { characterId: string };
   SignIn: undefined;
   SignUp: undefined;
+};
+
+export type CharacterDetailParams = {
+  Stats: { characterId: string };
+  Inventory: { characterId: string };
 };

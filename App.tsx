@@ -9,8 +9,7 @@ import AdventureDetailScreen from "./screens/AdventureDetailScreen";
 import AdventureListScreen from "./screens/AdventureListScreen";
 import CharacterListScreen from "./screens/CharacterListScreen";
 import CampaignListScreen from "./screens/CampaignListScreen";
-import CharacterInventoryScreen from "./screens/CharacterInventoryScreen";
-import CharacterStatsScreen from "./screens/CharacterStatsScreen";
+import CharacterDetailTabs from "./screens/CharacterDetailTabs";
 import SignInScreen from "./screens/SignInScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import LogoutButton from "./components/LogoutButton";
@@ -65,18 +64,8 @@ export default function App() {
           })}
         />
         <Stack.Screen
-          name="CharacterInventory"
-          component={CharacterInventoryScreen}
-          options={({ navigation }) => ({
-            headerRight: () => (
-              <LogoutButton onPress={() => navigation.navigate("SignIn")} />
-            ),
-            title: "Inventory",
-          })}
-        />
-        <Stack.Screen
-          name="CharacterStats"
-          component={CharacterStatsScreen}
+          name="CharacterDetail"
+          component={CharacterDetailTabs}
           options={({ navigation }) => ({
             headerRight: () => (
               <LogoutButton onPress={() => navigation.navigate("SignIn")} />

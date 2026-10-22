@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../routes";
+import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { CharacterDetailParams } from "../routes";
 import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import ScreenTitle from "../components/ScreenTitle";
 import NotebookSheet from "../components/NotebookSheet";
@@ -10,7 +10,7 @@ import CharacterItem from "../components/CharacterItem";
 import { getCampaign } from "../repositories/Campaign";
 import { getCharacter, getCharacters } from "../repositories/Character";
 
-type Props = NativeStackScreenProps<RootStackParamList, "CharacterStats">;
+type Props = BottomTabScreenProps<CharacterDetailParams, "Stats">;
 
 const CharacterStatsScreen = ({ navigation, route }: Props) => {
   const { characterId } = route.params;
@@ -27,9 +27,7 @@ const CharacterStatsScreen = ({ navigation, route }: Props) => {
       <NotebookButton
         text="Inventory"
         highlightColor={COLORS.highlighterBlue}
-        onPress={() =>
-          navigation.navigate("CharacterInventory", { characterId })
-        }
+        onPress={() => navigation.navigate("Inventory", { characterId })}
       />
     </View>,
     <ScreenTitle></ScreenTitle>,
