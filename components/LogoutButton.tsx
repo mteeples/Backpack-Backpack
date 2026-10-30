@@ -1,17 +1,17 @@
+import { useContext } from "react";
 import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
 import { COLORS, FONT_SIZES } from "../theme";
+import { AuthContext } from "../store/AuthContext";
 
-interface Props {
-  onPress: () => void;
-}
+const LogoutButton = () => {
+  const { signOut } = useContext(AuthContext);
 
-const LogoutButton = ({ onPress }: Props) => {
   return (
     <MaterialDesignIcons
       name="logout"
       size={FONT_SIZES.title}
       color={COLORS.ballpointBlack}
-      onPress={onPress}
+      onPress={signOut}
     />
   );
 };
