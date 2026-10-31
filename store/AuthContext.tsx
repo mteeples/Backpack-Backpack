@@ -5,33 +5,36 @@ interface Props {
 }
 
 type AuthContextType = {
+  userId: string;
   isSignedIn: boolean;
   signIn: () => void;
   signOut: () => void;
 };
 
 const AuthContext = createContext<AuthContextType>({
+  userId: "",
   isSignedIn: false,
   signIn: () => {},
   signOut: () => {},
 });
 
 const AuthContextProvider = ({ children }: Props) => {
-  const [token, setToken] = useState<string | null>(null);
-  const isSignedIn = token !== null;
+  const [userId, setUserId] = useState<string>("1");
+  const isSignedIn = userId !== "";
 
   function signIn() {
     // Actual auth logic here
-    setToken("signed in");
+    setUserId("1");
   }
 
   function signOut() {
     // Actual auth logic here
-    setToken(null);
+    setUserId("");
   }
 
   const value = {
     isSignedIn,
+    userId,
     signIn,
     signOut,
   };
