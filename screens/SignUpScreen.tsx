@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { COLORS, SPACING, FONT_SIZES } from "../theme";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../routes";
+import { AuthContext } from "../store/AuthContext";
 import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
@@ -10,6 +12,8 @@ import StickyInput from "../components/StickyInput";
 type Props = NativeStackScreenProps<RootStackParamList, "SignUp">;
 
 const SignUpScreen = ({ navigation }: Props) => {
+  const { signIn } = useContext(AuthContext);
+
   return (
     <View style={styles.rootContainer}>
       <StickyNote noteColor={COLORS.stickyYellow}>
@@ -32,7 +36,7 @@ const SignUpScreen = ({ navigation }: Props) => {
           <PrimaryButton
             title="Create Account"
             noteColor={COLORS.stickyYellow}
-            onPress={() => navigation.navigate("CampaignList", { userId: "1" })}
+            onPress={signIn}
           />
           <Text style={styles.orText}>or</Text>
           <PrimaryButton

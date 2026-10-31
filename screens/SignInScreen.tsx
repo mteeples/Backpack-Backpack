@@ -6,10 +6,14 @@ import StickyNote from "../components/StickyNote";
 import PrimaryButton from "../components/PrimaryButton";
 import ScreenTitle from "../components/ScreenTitle";
 import StickyInput from "../components/StickyInput";
+import { useContext } from "react";
+import { AuthContext } from "../store/AuthContext";
 
 type Props = NativeStackScreenProps<RootStackParamList, "SignIn">;
 
 const SignInScreen = ({ navigation }: Props) => {
+  const { signIn } = useContext(AuthContext);
+
   return (
     <View style={styles.rootContainer}>
       <StickyNote noteColor={COLORS.stickyYellow}>
@@ -26,7 +30,7 @@ const SignInScreen = ({ navigation }: Props) => {
           <PrimaryButton
             title="Sign In"
             noteColor={COLORS.stickyYellow}
-            onPress={() => navigation.navigate("CampaignList", { userId: "1" })}
+            onPress={signIn}
           />
           <Text style={styles.orText}>or</Text>
           <PrimaryButton

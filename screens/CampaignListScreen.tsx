@@ -1,12 +1,10 @@
-import { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { useState, useContext } from "react";
+import { View, StyleSheet } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../routes";
 import { COLORS, FONT_SIZES, SPACING } from "../theme";
 import { getCampaigns } from "../repositories/Campaign";
-import MaterialDesignIcons from "@react-native-vector-icons/material-design-icons";
-import PrimaryButton from "../components/PrimaryButton";
+import { AuthContext } from "../store/AuthContext";
 import ScreenTitle from "../components/ScreenTitle";
 import JoinCampaignModal from "../components/JoinCampaignModal";
 import HostCampaignModal from "../components/HostCampaignModal";
@@ -17,7 +15,7 @@ import CampaignItem from "../components/CampaignItem";
 type Props = NativeStackScreenProps<RootStackParamList, "CampaignList">;
 
 const CampaignListScreen = ({ navigation, route }: Props) => {
-  const { userId } = route.params;
+  const { userId } = useContext(AuthContext);
 
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [hostModalOpen, setHostModalOpen] = useState(false);
