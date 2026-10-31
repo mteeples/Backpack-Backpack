@@ -32,6 +32,14 @@ const NavigationStack = () => {
       {isSignedIn ? (
         <>
           <Stack.Screen
+            name="CampaignList"
+            component={CampaignListScreen}
+            options={({ navigation }) => ({
+              headerRight: () => <LogoutButton />,
+              title: "My Campaigns",
+            })}
+          />
+          <Stack.Screen
             name="AdventureDetail"
             component={AdventureDetailScreen}
             options={({ navigation }) => ({
@@ -50,14 +58,6 @@ const NavigationStack = () => {
             component={CharacterListScreen}
             options={({ navigation }) => ({
               headerRight: () => <LogoutButton />,
-            })}
-          />
-          <Stack.Screen
-            name="CampaignList"
-            component={CampaignListScreen}
-            options={({ navigation }) => ({
-              headerRight: () => <LogoutButton />,
-              title: "My Campaigns",
             })}
           />
           <Stack.Screen
