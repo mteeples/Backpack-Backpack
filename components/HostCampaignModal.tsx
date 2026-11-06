@@ -16,6 +16,8 @@ interface Props {
   userId: string;
 }
 
+type FormKey = "title" | "startingLevel" | "description";
+
 const HostCampaignModal = ({
   visible,
   setVisible,
@@ -23,37 +25,85 @@ const HostCampaignModal = ({
   userCampaigns,
   userId,
 }: Props) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [inputs, setInputs] = useState({
+    title: { value: "", isValid: true },
+    startingLevel: { value: "", isValid: true },
+    description: { value: "", isValid: true },
+  });
+
+  function handleTextChange(key: FormKey, val: string) {
+    setInputs((curInputs) => ({
+      ...curInputs,
+      [key]: { value: val, isValid: curInputs[key].isValid },
+    }));
+  }
 
   function handleHost() {
-    const newCampaigns = hostGame(title, description, userId, userCampaigns);
-    setUserCampaigns(newCampaigns);
-    handleCancel();
+    const startingLevel = +inputs.startingLevel.value;
+
+    // title cannot be empty
+    // starting level between 1 and 10
+    // description optional
+    const titleIsValid = inputs.title.value !== "";
+    const startingLevelIsValid =
+      !isNaN(startingLevel) && startingLevel > 0 && startingLevel <= 10;
+
+    // Set the isValid properties so the form can render any errors
+    setInputs((curInputs) => ({
+      ...curInputs,
+      title: { value: curInputs.title.value, isValid: titleIsValid },
+      startingLevel: {
+        value: curInputs.startingLevel.value,
+        isValid: startingLevelIsValid,
+      },
+    }));
+
+    // Only submit if the inputs are valid
+    if (titleIsValid && startingLevelIsValid) {
+      const newCampaigns = hostGame(
+        inputs.title.value,
+        inputs.description.value,
+        userId,
+        userCampaigns,
+      );
+      setUserCampaigns(newCampaigns);
+      handleCancel();
+    }
   }
 
   function handleCancel() {
     setVisible(false);
-    setTitle("");
-    setDescription("");
+    setInputs({
+      title: { value: "", isValid: true },
+      startingLevel: { value: "", isValid: true },
+      description: { value: "", isValid: true },
+    });
   }
 
   return (
     <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
       <ScreenTitle>Create Campaign</ScreenTitle>
-      <View style={styles.textContainer}>
-        <Text>Host a new campaign</Text>
-      </View>
       <StickyInput
-        placeholder="Campaign Title"
-        value={title}
-        onChangeText={setTitle}
+        label="Title"
+        isValid={inputs.title.isValid}
+        errorMessage="Cannot be empty"
+        value={inputs.title.value}
+        onChangeText={(text) => handleTextChange("title", text)}
       />
       <StickyInput
-        placeholder="Campaign Description"
+        label="Starting Level"
+        isValid={inputs.startingLevel.isValid}
+        errorMessage="Must be between 1 & 10"
+        value={inputs.startingLevel.value}
+        onChangeText={(text) => handleTextChange("startingLevel", text)}
+        keyboardType="number-pad"
+      />
+      <StickyInput
+        label="Description"
+        isValid={inputs.description.isValid}
         multiline={true}
-        value={description}
-        onChangeText={setDescription}
+        value={inputs.description.value}
+        onChangeText={(text) => handleTextChange("description", text)}
       />
       <View style={styles.buttonsContainer}>
         <PrimaryButton
@@ -72,10 +122,6 @@ const HostCampaignModal = ({
 };
 
 const styles = StyleSheet.create({
-  textContainer: {
-    marginBottom: SPACING.md,
-    alignItems: "center",
-  },
   buttonsContainer: {
     gap: SPACING.sm,
   },

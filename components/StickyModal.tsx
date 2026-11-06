@@ -1,6 +1,10 @@
 import { ReactNode } from "react";
-import { Modal, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  Modal,
+  StyleSheet,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import { COLORS, SPACING } from "../theme";
 import StickyNote from "./StickyNote";
 
@@ -13,11 +17,14 @@ interface Props {
 const StickyModal = ({ visible, children, noteColor }: Props) => {
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
-      <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <StickyNote style={styles.note} noteColor={noteColor}>
           {children}
         </StickyNote>
-      </SafeAreaView>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

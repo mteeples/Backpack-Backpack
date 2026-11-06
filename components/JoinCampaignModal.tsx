@@ -43,7 +43,7 @@ const HostCampaignModal = ({
         <Text>Join an existing campaign</Text>
       </View>
       <StickyInput
-        placeholder="Join Code"
+        label="Join Code"
         value={campaignId}
         onChangeText={setCampaignId}
         keyboardType="numeric"
