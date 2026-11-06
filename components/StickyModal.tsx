@@ -18,7 +18,7 @@ const StickyModal = ({ visible, children, noteColor }: Props) => {
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
       <KeyboardAvoidingView
-        style={styles.innerContainer}
+        style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <StickyNote style={styles.note} noteColor={noteColor}>
@@ -35,9 +35,6 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
     justifyContent: "center",
     backgroundColor: COLORS.modalBackground,
-  },
-  innerContainer: {
-    flex: 1,
   },
   note: {
     marginBottom: SPACING.lg * 3,

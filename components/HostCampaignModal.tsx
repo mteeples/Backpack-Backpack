@@ -16,6 +16,8 @@ interface Props {
   userId: string;
 }
 
+type FormKey = "title" | "startingLevel" | "description";
+
 const HostCampaignModal = ({
   visible,
   setVisible,
@@ -23,37 +25,58 @@ const HostCampaignModal = ({
   userCampaigns,
   userId,
 }: Props) => {
-  const [title, setTitle] = useState("");
-  const [startingLevel, setStartingLevel] = useState("");
-  const [description, setDescription] = useState("");
+  const [inputs, setInputs] = useState({
+    title: { value: "", isValid: true },
+    startingLevel: { value: "", isValid: true },
+    description: { value: "", isValid: true },
+  });
+
+  function handleTextChange(key: FormKey, val: string) {
+    setInputs((curInputs) => ({
+      ...curInputs,
+      [key]: { value: val, isValid: curInputs[key].isValid },
+    }));
+  }
 
   function handleHost() {
-    const newCampaigns = hostGame(title, description, userId, userCampaigns);
+    const newCampaigns = hostGame(
+      inputs.title.value,
+      inputs.description.value,
+      userId,
+      userCampaigns,
+    );
     setUserCampaigns(newCampaigns);
     handleCancel();
   }
 
   function handleCancel() {
     setVisible(false);
-    setTitle("");
-    setDescription("");
+    setInputs({
+      title: { value: "", isValid: true },
+      startingLevel: { value: "", isValid: true },
+      description: { value: "", isValid: true },
+    });
   }
 
   return (
     <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
       <ScreenTitle>Create Campaign</ScreenTitle>
-      <StickyInput label="Title" value={title} onChangeText={setTitle} />
+      <StickyInput
+        label="Title"
+        value={inputs.title.value}
+        onChangeText={(text) => handleTextChange("title", text)}
+      />
       <StickyInput
         label="Starting Level"
-        value={startingLevel}
-        onChangeText={setStartingLevel}
+        value={inputs.startingLevel.value}
+        onChangeText={(text) => handleTextChange("startingLevel", text)}
         keyboardType="number-pad"
       />
       <StickyInput
         label="Description"
         multiline={true}
-        value={description}
-        onChangeText={setDescription}
+        value={inputs.description.value}
+        onChangeText={(text) => handleTextChange("description", text)}
       />
       <View style={styles.buttonsContainer}>
         <PrimaryButton
