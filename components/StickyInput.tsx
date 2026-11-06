@@ -1,8 +1,30 @@
-import { TextInput, StyleSheet, TextInputProps } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TextInputProps,
+} from "react-native";
 import { SPACING, COLORS } from "../theme";
 
-const StickyInput = ({ ...props }: TextInputProps) => {
-  return <TextInput style={styles.textInput} {...props} />;
+interface StickyInputProps extends TextInputProps {
+  label: string;
+}
+
+const StickyInput = ({ label, ...props }: StickyInputProps) => {
+  const showMultiline = "multiline" in props;
+  return (
+    <View>
+      <Text style={styles.text}>{label}</Text>
+      <TextInput
+        style={[
+          styles.textInput,
+          showMultiline ? styles.textMultiline : undefined,
+        ]}
+        {...props}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -13,6 +35,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: SPACING.lg,
     fontSize: SPACING.md,
+  },
+  text: {
+    marginBottom: SPACING.sm,
+    color: COLORS.ballpointBlack,
+  },
+  textMultiline: {
+    textAlignVertical: "top",
   },
 });
 

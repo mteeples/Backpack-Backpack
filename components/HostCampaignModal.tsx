@@ -24,6 +24,7 @@ const HostCampaignModal = ({
   userId,
 }: Props) => {
   const [title, setTitle] = useState("");
+  const [startingLevel, setStartingLevel] = useState("");
   const [description, setDescription] = useState("");
 
   function handleHost() {
@@ -41,16 +42,15 @@ const HostCampaignModal = ({
   return (
     <StickyModal visible={visible} noteColor={COLORS.stickyYellow}>
       <ScreenTitle>Create Campaign</ScreenTitle>
-      <View style={styles.textContainer}>
-        <Text>Host a new campaign</Text>
-      </View>
+      <StickyInput label="Title" value={title} onChangeText={setTitle} />
       <StickyInput
-        placeholder="Campaign Title"
-        value={title}
-        onChangeText={setTitle}
+        label="Starting Level"
+        value={startingLevel}
+        onChangeText={setStartingLevel}
+        keyboardType="number-pad"
       />
       <StickyInput
-        placeholder="Campaign Description"
+        label="Description"
         multiline={true}
         value={description}
         onChangeText={setDescription}
@@ -72,10 +72,6 @@ const HostCampaignModal = ({
 };
 
 const styles = StyleSheet.create({
-  textContainer: {
-    marginBottom: SPACING.md,
-    alignItems: "center",
-  },
   buttonsContainer: {
     gap: SPACING.sm,
   },
