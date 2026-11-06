@@ -39,14 +39,36 @@ const HostCampaignModal = ({
   }
 
   function handleHost() {
-    const newCampaigns = hostGame(
-      inputs.title.value,
-      inputs.description.value,
-      userId,
-      userCampaigns,
-    );
-    setUserCampaigns(newCampaigns);
-    handleCancel();
+    const startingLevel = +inputs.startingLevel.value;
+
+    // title cannot be empty
+    // starting level between 1 and 10
+    // description optional
+    const titleIsValid = inputs.title.value !== "";
+    const startingLevelIsValid =
+      !isNaN(startingLevel) && startingLevel > 0 && startingLevel <= 10;
+
+    // Set the isValid properties so the form can render any errors
+    setInputs((curInputs) => ({
+      ...curInputs,
+      title: { value: curInputs.title.value, isValid: titleIsValid },
+      startingLevel: {
+        value: curInputs.startingLevel.value,
+        isValid: startingLevelIsValid,
+      },
+    }));
+
+    // Only submit if the inputs are valid
+    if (titleIsValid && startingLevelIsValid) {
+      const newCampaigns = hostGame(
+        inputs.title.value,
+        inputs.description.value,
+        userId,
+        userCampaigns,
+      );
+      setUserCampaigns(newCampaigns);
+      handleCancel();
+    }
   }
 
   function handleCancel() {
@@ -63,17 +85,22 @@ const HostCampaignModal = ({
       <ScreenTitle>Create Campaign</ScreenTitle>
       <StickyInput
         label="Title"
+        isValid={inputs.title.isValid}
+        errorMessage="Cannot be empty"
         value={inputs.title.value}
         onChangeText={(text) => handleTextChange("title", text)}
       />
       <StickyInput
         label="Starting Level"
+        isValid={inputs.startingLevel.isValid}
+        errorMessage="Must be between 1 & 10"
         value={inputs.startingLevel.value}
         onChangeText={(text) => handleTextChange("startingLevel", text)}
         keyboardType="number-pad"
       />
       <StickyInput
         label="Description"
+        isValid={inputs.description.isValid}
         multiline={true}
         value={inputs.description.value}
         onChangeText={(text) => handleTextChange("description", text)}

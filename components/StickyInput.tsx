@@ -9,13 +9,23 @@ import { SPACING, COLORS } from "../theme";
 
 interface StickyInputProps extends TextInputProps {
   label: string;
+  isValid: boolean;
+  errorMessage?: string;
 }
 
-const StickyInput = ({ label, ...props }: StickyInputProps) => {
+const StickyInput = ({
+  label,
+  isValid,
+  errorMessage,
+  ...props
+}: StickyInputProps) => {
   const showMultiline = "multiline" in props;
   return (
     <View>
-      <Text style={styles.text}>{label}</Text>
+      <Text style={[styles.text, isValid ? undefined : styles.error]}>
+        {label}
+        {!isValid && errorMessage && ` - ${errorMessage}`}
+      </Text>
       <TextInput
         style={[
           styles.textInput,
@@ -42,6 +52,9 @@ const styles = StyleSheet.create({
   },
   textMultiline: {
     textAlignVertical: "top",
+  },
+  error: {
+    color: COLORS.notebookRed,
   },
 });
 
